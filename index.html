@@ -4,153 +4,41 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#11100d">
-<title>YUVANANDHAN R | DATAEKO</title>
+<meta name="description" content="Yuvanandhan R builds practical machine learning and DevOps projects.">
+<title>YUVANANDHAN R / BUILDER PORTFOLIO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #f6f0e7;
-    --muted: #aaa39a;
-    --night: #11100d;
-    --hot: #ff7a45;
-    --acid: #d9f56a;
-    --line: rgba(246, 240, 231, .18);
-    --mx: 50%;
-    --my: 50%;
-  }
-
-  * { box-sizing: border-box; }
-  html { background: var(--night); }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    overflow: hidden;
-    color: var(--ink);
-    background:
-      radial-gradient(circle at var(--mx) var(--my), rgba(255, 122, 69, .13), transparent 28rem),
-      var(--night);
-    font-family: 'Syne', sans-serif;
-    transition: background .8s ease;
-  }
-
-  body::before {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    content: '';
-    opacity: .15;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
-  }
-
-  .orbit { position: fixed; width: min(62vw, 42rem); aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-18deg); pointer-events: none; }
-  .orbit::after { content: ''; position: absolute; width: .55rem; height: .55rem; border-radius: 50%; background: var(--acid); box-shadow: 0 0 1.2rem var(--acid); top: 12%; left: 8%; }
-  .orbit.two { width: min(84vw, 58rem); border-color: rgba(217, 245, 106, .11); transform: translate(-50%, -50%) rotate(40deg) scaleY(.42); }
-  canvas { position: fixed; inset: 0; z-index: -1; opacity: .5; pointer-events: none; }
-
-  .shell { min-height: 100vh; padding: 2rem clamp(1.25rem, 5vw, 5rem); display: flex; flex-direction: column; justify-content: space-between; }
-  header, footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font: 500 .7rem 'DM Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
-  .mark { display: flex; align-items: center; gap: .65rem; }
-  .mark-dot { width: .65rem; height: .65rem; display: block; border-radius: 50%; background: var(--acid); box-shadow: 0 0 .8rem var(--acid); }
-  .status { color: var(--muted); }
-  .status b { color: var(--acid); font-weight: 400; }
-  .menu-button { color: var(--ink); background: none; border: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; padding: .5rem 0; }
-  .menu-button:hover { color: var(--acid); }
-
-  main { width: min(100%, 86rem); margin: 0 auto; position: relative; }
-  .eyebrow { color: var(--hot); font: 500 .74rem 'DM Mono', monospace; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 1.5rem; }
-  h1 { max-width: 12ch; margin: 0; font-size: clamp(3.4rem, 11.5vw, 10.5rem); font-weight: 800; line-height: .82; letter-spacing: -.07em; text-transform: uppercase; transition: transform .25s ease; transform: translate(var(--shift-x, 0), var(--shift-y, 0)); }
-  h1 span { display: block; color: transparent; -webkit-text-stroke: 1px rgba(246, 240, 231, .72); }
-  .subline { display: flex; align-items: center; gap: 1rem; margin-top: 2.1rem; color: var(--muted); font: .78rem 'DM Mono', monospace; letter-spacing: .04em; }
-  .subline i { width: 3.5rem; height: 1px; background: var(--hot); display: block; }
-  .signal { position: absolute; right: 4%; bottom: -1rem; width: 11rem; height: 11rem; padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); font: .65rem 'DM Mono', monospace; transform: rotate(11deg); transition: transform .35s ease, border-color .35s ease; }
-  .signal:hover { transform: rotate(0) scale(1.06); border-color: var(--acid); }
-  .signal strong { color: var(--acid); font: 600 1.2rem 'Syne', sans-serif; }
-  .signal button { align-self: flex-end; width: 2.2rem; height: 2.2rem; color: var(--night); background: var(--acid); border: 0; border-radius: 50%; cursor: pointer; font-size: 1rem; transition: transform .2s ease; }
-  .signal button:hover { transform: rotate(45deg); }
-  footer { color: var(--muted); }
-  .coordinates { color: var(--ink); }
-  .reveal { animation: rise .9s cubic-bezier(.2,.8,.2,1) both; }
-  .delay { animation-delay: .18s; }
-  @keyframes rise { from { opacity: 0; transform: translateY(1.5rem); } to { opacity: 1; transform: translateY(0); } }
-  @media (max-width: 620px) {
-    .shell { padding-top: 1.4rem; padding-bottom: 1.4rem; }
-    .status { display: none; }
-    h1 { font-size: clamp(3.2rem, 17vw, 7rem); }
-    .signal { position: relative; right: auto; bottom: auto; margin: 3.5rem 0 0 auto; width: 8.5rem; height: 8.5rem; }
-    .signal strong { font-size: .95rem; }
-    footer { font-size: .58rem; }
-  }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+:root{--night:#11100d;--ink:#f6f0e7;--muted:#aaa39a;--hot:#ff7a45;--acid:#d9f56a;--line:rgba(246,240,231,.18);--mx:50%;--my:50%}
+*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--night)}body{margin:0;min-width:320px;overflow-x:hidden;color:var(--ink);background:radial-gradient(circle at var(--mx) var(--my),rgba(255,122,69,.14),transparent 28rem),var(--night);font-family:'Syne',sans-serif;transition:background .7s,color .7s}body.light{--night:#e9e3d9;--ink:#171512;--muted:#665f56;--line:rgba(23,21,18,.2)}body::before{position:fixed;inset:0;z-index:-2;content:'';pointer-events:none;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");}canvas{position:fixed;inset:0;z-index:-1;opacity:.4;pointer-events:none}a{color:inherit}button{font:inherit}.shell{width:min(100%,98rem);margin:auto;padding:1.5rem clamp(1.25rem,5vw,5rem)}header,footer,.meta{display:flex;align-items:center;justify-content:space-between;gap:1rem;font:500 .68rem 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase}header{position:relative;z-index:3}.mark{display:flex;align-items:center;gap:.65rem;text-decoration:none}.mark-dot{width:.65rem;height:.65rem;border-radius:50%;background:var(--acid);box-shadow:0 0 .8rem var(--acid)}nav{display:flex;gap:1.3rem;color:var(--muted)}nav a{text-decoration:none;transition:color .2s}nav a:hover,nav a:focus-visible{color:var(--acid)}.theme-button{padding:.5rem 0;border:0;color:var(--ink);background:none;cursor:pointer;text-transform:uppercase;letter-spacing:.12em}.theme-button:hover{color:var(--hot)}
+.hero{min-height:calc(100vh - 5rem);display:grid;align-content:center;position:relative;padding:5rem 0 6rem}.eyebrow{margin:0 0 1.35rem;color:var(--hot);font:500 .73rem 'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase}h1{max-width:10ch;margin:0;font-size:clamp(4rem,12.5vw,11rem);font-weight:800;line-height:.8;letter-spacing:-.07em;text-transform:uppercase;transform:translate(var(--shift-x,0),var(--shift-y,0));transition:transform .25s ease}h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(246,240,231,.72)}.hero-copy{max-width:34rem;margin:2.4rem 0 0 8%;color:var(--muted);font:.8rem/1.7 'DM Mono',monospace}.hero-copy strong{color:var(--ink);font-family:'Syne',sans-serif;font-size:1.05rem}.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}.button{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1rem;border:1px solid var(--line);color:var(--ink);text-decoration:none;font:500 .68rem 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s,border-color .2s,background .2s}.button:hover{border-color:var(--acid);background:rgba(217,245,106,.08);transform:translateY(-3px)}.button.primary{border-color:var(--hot);background:var(--hot);color:#17110c}.hero-orbit{position:absolute;right:3%;top:25%;width:min(40vw,31rem);aspect-ratio:1;border:1px solid var(--line);border-radius:50%;transform:rotate(-18deg);pointer-events:none}.hero-orbit:before,.hero-orbit:after{content:'';position:absolute;border-radius:50%;background:var(--acid);box-shadow:0 0 1rem var(--acid)}.hero-orbit:before{width:.55rem;height:.55rem;top:12%;left:8%}.hero-orbit:after{width:.3rem;height:.3rem;right:16%;bottom:20%;background:var(--hot);box-shadow:0 0 1rem var(--hot)}.scroll-cue{position:absolute;bottom:2rem;left:0;color:var(--muted);font:500 .65rem 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase}.scroll-cue:before{display:inline-block;width:3rem;height:1px;margin-right:.7rem;vertical-align:middle;background:var(--hot);content:''}
+section{padding:7rem 0;border-top:1px solid var(--line)}.section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:2rem;margin-bottom:2.5rem}h2{margin:0;font-size:clamp(2.2rem,6vw,5.5rem);line-height:.9;letter-spacing:-.06em;text-transform:uppercase}.section-number{color:var(--hot);font:500 .7rem 'DM Mono',monospace}.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}.project{min-height:18rem;display:flex;flex-direction:column;justify-content:space-between;padding:1.5rem;background:var(--night);transition:background .3s,transform .3s}.project:hover{position:relative;z-index:1;background:#1b1915;transform:translateY(-6px)}body.light .project:hover{background:#ded7cc}.project-top,.project-bottom{display:flex;justify-content:space-between;gap:1rem;color:var(--muted);font:500 .65rem 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase}.project h3{max-width:13ch;margin:1.5rem 0 .8rem;font-size:clamp(1.5rem,3vw,3rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}.project p{max-width:34rem;margin:0;color:var(--muted);font:.75rem/1.6 'DM Mono',monospace}.tag{color:var(--acid)}.project-link{color:var(--ink);text-decoration:none}.project-link:hover{color:var(--acid)}.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,8vw,9rem)}.about-lead{max-width:42rem;margin:0;font-size:clamp(1.5rem,3.2vw,3.2rem);line-height:1.05;letter-spacing:-.04em}.about-lead em{color:var(--hot);font-style:normal}.skill-list{border-top:1px solid var(--line)}.skill{display:flex;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--line);color:var(--muted);font:500 .75rem 'DM Mono',monospace;text-transform:uppercase}.skill b{color:var(--acid);font-weight:400}.contact{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem}.contact h2{max-width:9ch}.contact-info{text-align:right;font:500 .72rem/2 'DM Mono',monospace;text-transform:uppercase}.contact-info a{color:var(--acid);text-decoration:none}footer{padding:1.5rem 0 2rem;color:var(--muted)}.reveal{opacity:0;transform:translateY(1.5rem);animation:rise .8s cubic-bezier(.2,.8,.2,1) forwards}.delay{animation-delay:.15s}@keyframes rise{to{opacity:1;transform:translateY(0)}}
+main{width:100%;min-width:0}.hero{overflow:hidden}h1{width:100%;max-width:none;min-width:0;font-size:clamp(2.6rem,13vw,11rem);line-height:.86;letter-spacing:-.08em}
+@media(max-width:700px){nav{display:none}.hero{min-height:calc(100svh - 4rem);padding-top:4rem}.hero-orbit{top:12%;right:-18%;width:70vw;opacity:.7}.hero-copy{margin-left:0}h1{font-size:clamp(2.4rem,10.5vw,7rem);letter-spacing:-.09em}section{padding:5rem 0}.project-grid,.about-grid,.contact{grid-template-columns:1fr}.project{min-height:15rem}.contact-info{text-align:left}footer{align-items:flex-start;flex-direction:column}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
-  <canvas id="constellation" aria-hidden="true"></canvas>
-  <div class="orbit" aria-hidden="true"></div>
-  <div class="orbit two" aria-hidden="true"></div>
-  <div class="shell">
-    <header class="reveal">
-      <div class="mark"><span class="mark-dot"></span><span>YR / 001</span></div>
-      <div class="status"><b>●</b> currently building / <span id="clock">--:--:--</span></div>
-      <button class="menu-button" id="themeToggle" type="button">invert ↗</button>
-    </header>
-    <main>
-      <div class="eyebrow reveal delay">Dataeko · Week 03</div>
-      <h1 class="reveal delay" id="title">Yuvanandhan <span>R.</span></h1>
-      <div class="subline reveal delay"><i></i><span id="message">A quiet signal in a noisy world.</span></div>
-      <aside class="signal reveal delay" aria-label="Interactive signal control">
-        <strong id="signalLabel">SEND<br>SIGNAL</strong>
-        <span>tap to shift<br>the frequency</span>
-        <button id="signalButton" type="button" aria-label="Shift the frequency">↗</button>
-      </aside>
-    </main>
-    <footer class="reveal delay"><span>© 2025 — Chennai, IN</span><span class="coordinates">13° 04' N / 80° 17' E</span></footer>
-  </div>
+<canvas id="constellation" aria-hidden="true"></canvas>
+<div class="shell">
+<header class="reveal"><a class="mark" href="#top" aria-label="Back to top"><span class="mark-dot"></span><span>YR / 001</span></a><nav aria-label="Main navigation"><a href="#work">work</a><a href="#about">about</a><a href="#contact">contact</a></nav><button class="theme-button" id="themeToggle" type="button">invert +</button></header>
+<main id="top">
+<section class="hero" aria-labelledby="intro-title"><div class="hero-orbit" aria-hidden="true"></div><div class="eyebrow reveal delay">Machine Learning &amp; DevOps</div><h1 class="reveal delay" id="intro-title">Yuvanandhan <span>R.</span></h1><p class="hero-copy reveal delay"><strong>ML + DevOps builder.</strong><br>Turning messy signals into useful systems through machine learning, NLP, automation, and a steady curiosity for what comes next.</p><div class="hero-actions reveal delay"><a class="button primary" href="#work">Explore the work <span>↘</span></a><a class="button" href="mailto:yuvanandhanr@gmail.com">Start a conversation <span>↗</span></a></div><div class="scroll-cue">Scroll to inspect</div></section>
+<section id="work" aria-labelledby="work-title"><div class="section-heading"><h2 id="work-title">Selected<br>signals</h2><span class="section-number">01 / 03</span></div><div class="project-grid">
+<article class="project reveal"><div class="project-top"><span>01 / applied AI</span><span class="tag">Python</span></div><div><h3>Mental health using voice dataset</h3><p>Deep learning and NLP exploration built around voice data and mental-health signals.</p></div><div class="project-bottom"><span>research / prototype</span><a class="project-link" href="https://github.com/yuvanandhanr/Mental-Health-using-voice-dataset" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
+<article class="project reveal delay"><div class="project-top"><span>02 / predictive systems</span><span class="tag">ML + HTML</span></div><div><h3>Machine error prediction</h3><p>Predictive maintenance work combining machine learning with DevOps practices for continuous delivery and integration.</p></div><div class="project-bottom"><span>prediction / delivery</span><a class="project-link" href="https://github.com/yuvanandhanr/machine-error-prediction" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
+<article class="project reveal"><div class="project-top"><span>03 / automation</span><span class="tag">Python</span></div><div><h3>Job bot</h3><p>A Python automation project focused on simplifying repetitive job-search tasks and workflows.</p></div><div class="project-bottom"><span>automation / utility</span><a class="project-link" href="https://github.com/yuvanandhanr/Job-bot" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
+<article class="project reveal delay"><div class="project-top"><span>04 / portfolio</span><span class="tag">Python</span></div><div><h3>Know about Yuvanandhan</h3><p>An earlier portfolio website exploring a personal web presence and project storytelling.</p></div><div class="project-bottom"><span>web / personal brand</span><a class="project-link" href="https://github.com/yuvanandhanr/knowabtyuvanandhanr" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
+</div></section>
+<section id="about" aria-labelledby="about-title"><div class="section-heading"><h2 id="about-title">The<br>approach</h2><span class="section-number">02 / 03</span></div><div class="about-grid"><p class="about-lead">I like work that sits between <em>intelligence</em> and infrastructure: find the pattern, build the model, then make it reliable enough to matter.</p><div class="skill-list"><div class="skill"><span>Machine learning</span><b>01</b></div><div class="skill"><span>Python + NLP</span><b>02</b></div><div class="skill"><span>DevOps + CI/CD</span><b>03</b></div><div class="skill"><span>Data exploration</span><b>04</b></div><div class="skill"><span>Creative web</span><b>05</b></div></div></div></section>
+<section id="contact" aria-labelledby="contact-title"><div class="section-heading"><h2 id="contact-title">Send a<br>signal</h2><span class="section-number">03 / 03</span></div><div class="contact"><div><p class="eyebrow">Open to interesting problems</p><a class="button primary" href="mailto:yuvanandhanr@gmail.com">yuvanandhanr@gmail.com <span>↗</span></a></div><div class="contact-info"><a href="https://github.com/yuvanandhanr" target="_blank" rel="noreferrer">GitHub / yuvanandhanr</a><br><a href="https://www.linkedin.com/in/yuvanandhan" target="_blank" rel="noreferrer">LinkedIn / yuvanandhan</a></div></div></section>
+</main><footer><span>© 2026 / Yuvanandhan R</span><span>13° 04' N / 80° 17' E</span></footer>
+</div>
 <script>
-  const root = document.documentElement;
-  const title = document.querySelector('#title');
-  const message = document.querySelector('#message');
-  const signalLabel = document.querySelector('#signalLabel');
-  const signalButton = document.querySelector('#signalButton');
-  const messages = ['A quiet signal in a noisy world.', 'Frequency found. Keep going.', 'The future is under construction.'];
-  let messageIndex = 0;
-
-  window.addEventListener('pointermove', (event) => {
-    root.style.setProperty('--mx', `${event.clientX}px`);
-    root.style.setProperty('--my', `${event.clientY}px`);
-    const x = (event.clientX / window.innerWidth - .5) * 8;
-    const y = (event.clientY / window.innerHeight - .5) * 8;
-    title.style.setProperty('--shift-x', `${x}px`);
-    title.style.setProperty('--shift-y', `${y}px`);
-  });
-
-  signalButton.addEventListener('click', () => {
-    messageIndex = (messageIndex + 1) % messages.length;
-    message.textContent = messages[messageIndex];
-    signalLabel.innerHTML = messageIndex === 2 ? 'SIGNAL<br>LOCKED' : 'SIGNAL<br>SHIFTED';
-    signalButton.textContent = messageIndex === 2 ? '↘' : '↗';
-  });
-
-  document.querySelector('#themeToggle').addEventListener('click', () => {
-    const inverted = root.classList.toggle('inverted');
-    root.style.setProperty('--night', inverted ? '#e9e3d9' : '#11100d');
-    root.style.setProperty('--ink', inverted ? '#171512' : '#f6f0e7');
-    root.style.setProperty('--muted', inverted ? '#665f56' : '#aaa39a');
-    document.querySelector('#themeToggle').textContent = inverted ? 'restore ↗' : 'invert ↗';
-  });
-
-  const clock = document.querySelector('#clock');
-  const updateClock = () => { clock.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date()); };
-  updateClock();
-  setInterval(updateClock, 1000);
-
-  const canvas = document.querySelector('#constellation');
-  const context = canvas.getContext('2d');
-  let points = [];
-  const resize = () => { canvas.width = innerWidth; canvas.height = innerHeight; points = Array.from({ length: Math.min(70, Math.floor(innerWidth / 18)) }, () => ({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, vx: (Math.random() - .5) * .15, vy: (Math.random() - .5) * .15 })); };
-  const draw = () => { context.clearRect(0, 0, canvas.width, canvas.height); points.forEach((point, index) => { point.x += point.vx; point.y += point.vy; if (point.x < 0 || point.x > innerWidth) point.vx *= -1; if (point.y < 0 || point.y > innerHeight) point.vy *= -1; context.fillStyle = 'rgba(217,245,106,.55)'; context.fillRect(point.x, point.y, 1.5, 1.5); points.slice(index + 1).forEach((other) => { const distance = Math.hypot(point.x - other.x, point.y - other.y); if (distance < 100) { context.strokeStyle = `rgba(217,245,106,${.12 * (1 - distance / 100)})`; context.beginPath(); context.moveTo(point.x, point.y); context.lineTo(other.x, other.y); context.stroke(); } }); }); requestAnimationFrame(draw); };
-  resize(); window.addEventListener('resize', resize); draw();
+const root=document.documentElement;const body=document.body;const title=document.querySelector('#intro-title');const themeToggle=document.querySelector('#themeToggle');
+addEventListener('pointermove',event=>{root.style.setProperty('--mx',`${event.clientX}px`);root.style.setProperty('--my',`${event.clientY}px`);title.style.setProperty('--shift-x',`${(event.clientX/innerWidth-.5)*7}px`);title.style.setProperty('--shift-y',`${(event.clientY/innerHeight-.5)*7}px`)});
+themeToggle.addEventListener('click',()=>{body.classList.toggle('light');themeToggle.textContent=body.classList.contains('light')?'restore +':'invert +'});
+const canvas=document.querySelector('#constellation');const context=canvas.getContext('2d');let points=[];const resize=()=>{canvas.width=innerWidth;canvas.height=innerHeight;points=Array.from({length:Math.min(70,Math.floor(innerWidth/18))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15}))};const draw=()=>{context.clearRect(0,0,canvas.width,canvas.height);points.forEach((point,index)=>{point.x+=point.vx;point.y+=point.vy;if(point.x<0||point.x>innerWidth)point.vx*=-1;if(point.y<0||point.y>innerHeight)point.vy*=-1;context.fillStyle='rgba(217,245,106,.55)';context.fillRect(point.x,point.y,1.5,1.5);points.slice(index+1).forEach(other=>{const distance=Math.hypot(point.x-other.x,point.y-other.y);if(distance<100){context.strokeStyle=`rgba(217,245,106,${.12*(1-distance/100)})`;context.beginPath();context.moveTo(point.x,point.y);context.lineTo(other.x,other.y);context.stroke()}})});requestAnimationFrame(draw)};resize();addEventListener('resize',resize);draw();
 </script>
 </body>
 </html>
