@@ -2,18 +2,155 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>YUVANANDHAN R</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#11100d">
+<title>YUVANANDHAN R | DATAEKO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  body { margin:0; height:100vh; display:grid; place-items:center;
-         background:#17120c; color:#f2e9db; font-family:system-ui, sans-serif; }
-  h1 { font-size:clamp(2rem,12vw,6rem); margin:0; }
-  p  { color:#f0a93b; letter-spacing:.3em; text-transform:uppercase; font-size:.75rem; }
+  :root {
+    --ink: #f6f0e7;
+    --muted: #aaa39a;
+    --night: #11100d;
+    --hot: #ff7a45;
+    --acid: #d9f56a;
+    --line: rgba(246, 240, 231, .18);
+    --mx: 50%;
+    --my: 50%;
+  }
+
+  * { box-sizing: border-box; }
+  html { background: var(--night); }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at var(--mx) var(--my), rgba(255, 122, 69, .13), transparent 28rem),
+      var(--night);
+    font-family: 'Syne', sans-serif;
+    transition: background .8s ease;
+  }
+
+  body::before {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: '';
+    opacity: .15;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  }
+
+  .orbit { position: fixed; width: min(62vw, 42rem); aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-18deg); pointer-events: none; }
+  .orbit::after { content: ''; position: absolute; width: .55rem; height: .55rem; border-radius: 50%; background: var(--acid); box-shadow: 0 0 1.2rem var(--acid); top: 12%; left: 8%; }
+  .orbit.two { width: min(84vw, 58rem); border-color: rgba(217, 245, 106, .11); transform: translate(-50%, -50%) rotate(40deg) scaleY(.42); }
+  canvas { position: fixed; inset: 0; z-index: -1; opacity: .5; pointer-events: none; }
+
+  .shell { min-height: 100vh; padding: 2rem clamp(1.25rem, 5vw, 5rem); display: flex; flex-direction: column; justify-content: space-between; }
+  header, footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font: 500 .7rem 'DM Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
+  .mark { display: flex; align-items: center; gap: .65rem; }
+  .mark-dot { width: .65rem; height: .65rem; display: block; border-radius: 50%; background: var(--acid); box-shadow: 0 0 .8rem var(--acid); }
+  .status { color: var(--muted); }
+  .status b { color: var(--acid); font-weight: 400; }
+  .menu-button { color: var(--ink); background: none; border: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; padding: .5rem 0; }
+  .menu-button:hover { color: var(--acid); }
+
+  main { width: min(100%, 86rem); margin: 0 auto; position: relative; }
+  .eyebrow { color: var(--hot); font: 500 .74rem 'DM Mono', monospace; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 1.5rem; }
+  h1 { max-width: 12ch; margin: 0; font-size: clamp(3.4rem, 11.5vw, 10.5rem); font-weight: 800; line-height: .82; letter-spacing: -.07em; text-transform: uppercase; transition: transform .25s ease; transform: translate(var(--shift-x, 0), var(--shift-y, 0)); }
+  h1 span { display: block; color: transparent; -webkit-text-stroke: 1px rgba(246, 240, 231, .72); }
+  .subline { display: flex; align-items: center; gap: 1rem; margin-top: 2.1rem; color: var(--muted); font: .78rem 'DM Mono', monospace; letter-spacing: .04em; }
+  .subline i { width: 3.5rem; height: 1px; background: var(--hot); display: block; }
+  .signal { position: absolute; right: 4%; bottom: -1rem; width: 11rem; height: 11rem; padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); font: .65rem 'DM Mono', monospace; transform: rotate(11deg); transition: transform .35s ease, border-color .35s ease; }
+  .signal:hover { transform: rotate(0) scale(1.06); border-color: var(--acid); }
+  .signal strong { color: var(--acid); font: 600 1.2rem 'Syne', sans-serif; }
+  .signal button { align-self: flex-end; width: 2.2rem; height: 2.2rem; color: var(--night); background: var(--acid); border: 0; border-radius: 50%; cursor: pointer; font-size: 1rem; transition: transform .2s ease; }
+  .signal button:hover { transform: rotate(45deg); }
+  footer { color: var(--muted); }
+  .coordinates { color: var(--ink); }
+  .reveal { animation: rise .9s cubic-bezier(.2,.8,.2,1) both; }
+  .delay { animation-delay: .18s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(1.5rem); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 620px) {
+    .shell { padding-top: 1.4rem; padding-bottom: 1.4rem; }
+    .status { display: none; }
+    h1 { font-size: clamp(3.2rem, 17vw, 7rem); }
+    .signal { position: relative; right: auto; bottom: auto; margin: 3.5rem 0 0 auto; width: 8.5rem; height: 8.5rem; }
+    .signal strong { font-size: .95rem; }
+    footer { font-size: .58rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 </style>
 </head>
 <body>
-  <main>
-    <h1>YUVANANDHAN R</h1>
-    <p>DATAEKO &middot; Week 3</p>
-  </main>
+  <canvas id="constellation" aria-hidden="true"></canvas>
+  <div class="orbit" aria-hidden="true"></div>
+  <div class="orbit two" aria-hidden="true"></div>
+  <div class="shell">
+    <header class="reveal">
+      <div class="mark"><span class="mark-dot"></span><span>YR / 001</span></div>
+      <div class="status"><b>●</b> currently building / <span id="clock">--:--:--</span></div>
+      <button class="menu-button" id="themeToggle" type="button">invert ↗</button>
+    </header>
+    <main>
+      <div class="eyebrow reveal delay">Dataeko · Week 03</div>
+      <h1 class="reveal delay" id="title">Yuvanandhan <span>R.</span></h1>
+      <div class="subline reveal delay"><i></i><span id="message">A quiet signal in a noisy world.</span></div>
+      <aside class="signal reveal delay" aria-label="Interactive signal control">
+        <strong id="signalLabel">SEND<br>SIGNAL</strong>
+        <span>tap to shift<br>the frequency</span>
+        <button id="signalButton" type="button" aria-label="Shift the frequency">↗</button>
+      </aside>
+    </main>
+    <footer class="reveal delay"><span>© 2025 — Chennai, IN</span><span class="coordinates">13° 04' N / 80° 17' E</span></footer>
+  </div>
+<script>
+  const root = document.documentElement;
+  const title = document.querySelector('#title');
+  const message = document.querySelector('#message');
+  const signalLabel = document.querySelector('#signalLabel');
+  const signalButton = document.querySelector('#signalButton');
+  const messages = ['A quiet signal in a noisy world.', 'Frequency found. Keep going.', 'The future is under construction.'];
+  let messageIndex = 0;
+
+  window.addEventListener('pointermove', (event) => {
+    root.style.setProperty('--mx', `${event.clientX}px`);
+    root.style.setProperty('--my', `${event.clientY}px`);
+    const x = (event.clientX / window.innerWidth - .5) * 8;
+    const y = (event.clientY / window.innerHeight - .5) * 8;
+    title.style.setProperty('--shift-x', `${x}px`);
+    title.style.setProperty('--shift-y', `${y}px`);
+  });
+
+  signalButton.addEventListener('click', () => {
+    messageIndex = (messageIndex + 1) % messages.length;
+    message.textContent = messages[messageIndex];
+    signalLabel.innerHTML = messageIndex === 2 ? 'SIGNAL<br>LOCKED' : 'SIGNAL<br>SHIFTED';
+    signalButton.textContent = messageIndex === 2 ? '↘' : '↗';
+  });
+
+  document.querySelector('#themeToggle').addEventListener('click', () => {
+    const inverted = root.classList.toggle('inverted');
+    root.style.setProperty('--night', inverted ? '#e9e3d9' : '#11100d');
+    root.style.setProperty('--ink', inverted ? '#171512' : '#f6f0e7');
+    root.style.setProperty('--muted', inverted ? '#665f56' : '#aaa39a');
+    document.querySelector('#themeToggle').textContent = inverted ? 'restore ↗' : 'invert ↗';
+  });
+
+  const clock = document.querySelector('#clock');
+  const updateClock = () => { clock.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date()); };
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  const canvas = document.querySelector('#constellation');
+  const context = canvas.getContext('2d');
+  let points = [];
+  const resize = () => { canvas.width = innerWidth; canvas.height = innerHeight; points = Array.from({ length: Math.min(70, Math.floor(innerWidth / 18)) }, () => ({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, vx: (Math.random() - .5) * .15, vy: (Math.random() - .5) * .15 })); };
+  const draw = () => { context.clearRect(0, 0, canvas.width, canvas.height); points.forEach((point, index) => { point.x += point.vx; point.y += point.vy; if (point.x < 0 || point.x > innerWidth) point.vx *= -1; if (point.y < 0 || point.y > innerHeight) point.vy *= -1; context.fillStyle = 'rgba(217,245,106,.55)'; context.fillRect(point.x, point.y, 1.5, 1.5); points.slice(index + 1).forEach((other) => { const distance = Math.hypot(point.x - other.x, point.y - other.y); if (distance < 100) { context.strokeStyle = `rgba(217,245,106,${.12 * (1 - distance / 100)})`; context.beginPath(); context.moveTo(point.x, point.y); context.lineTo(other.x, other.y); context.stroke(); } }); }); requestAnimationFrame(draw); };
+  resize(); window.addEventListener('resize', resize); draw();
+</script>
 </body>
 </html>
