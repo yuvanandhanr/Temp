@@ -17,28 +17,380 @@ section{padding:7rem 0;border-top:1px solid var(--line)}.section-heading{display
 main{width:100%;min-width:0}.hero{overflow:hidden}h1{width:100%;max-width:none;min-width:0;font-size:clamp(1.3rem,6.5vw,5.5rem);line-height:.86;letter-spacing:-.08em}
 @media(max-width:700px){nav{display:none}.hero{min-height:calc(100svh - 4rem);padding-top:4rem}.hero-orbit{top:12%;right:-18%;width:70vw;opacity:.7}.hero-copy{margin-left:0}h1{font-size:clamp(1.2rem,5.25vw,3.5rem);letter-spacing:-.09em}section{padding:5rem 0}.project-grid,.about-grid,.contact{grid-template-columns:1fr}.project{min-height:15rem}.contact-info{text-align:left}footer{align-items:flex-start;flex-direction:column}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
+<style>
+.credential-viewport{position:relative;height:clamp(22rem,48vw,34rem);overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none}
+.credential-viewport:active{cursor:grabbing}
+.credential-track{position:absolute;inset:0}
+.credential-card{position:absolute;top:50%;left:0;width:clamp(13rem,23vw,17rem);height:clamp(17rem,30vw,22rem);padding:1.25rem;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);background:var(--night);color:var(--ink);text-decoration:none;transform:translate3d(0,-50%,0);will-change:transform,opacity,filter;transition:border-color .2s;overflow:hidden}
+.credential-card:hover,.credential-card:focus-visible{border-color:var(--acid);outline:none}
+.credential-art{height:62%;display:grid;place-items:center;border-bottom:1px solid var(--line);background:radial-gradient(circle,rgba(217,245,106,.12),transparent 68%)}
+.credential-art img{width:min(75%,10rem);height:min(90%,10rem);object-fit:contain;filter:drop-shadow(0 1rem 1.6rem rgba(0,0,0,.35));pointer-events:none}
+.credential-meta{display:grid;gap:.5rem;font:500 .62rem/1.4 'DM Mono',monospace;text-transform:uppercase}
+.credential-issuer{color:var(--hot);letter-spacing:.12em}
+.credential-name{font:700 1.05rem/.98 'Syne',sans-serif;text-transform:uppercase}
+.credential-date{color:var(--muted)}
+.credential-controls{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.25rem}
+.credential-controls p{margin:0;color:var(--muted);font:500 .65rem 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.credential-buttons{display:flex;gap:.5rem}
+.credential-button{width:2.75rem;height:2.75rem;display:grid;place-items:center;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:1.2rem;cursor:pointer}
+.credential-button:hover,.credential-button:focus-visible{border-color:var(--acid);color:var(--acid);outline:none}
+@media(max-width:700px){.credential-viewport{height:25rem}.credential-card{width:13rem;height:18rem}.credential-art img{width:8rem;height:8rem}}
+</style>
+<style>
+body{isolation:isolate}
+canvas#constellation{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;opacity:.38;pointer-events:none}
+.shell{position:relative;z-index:1}
+.project,.credential-card{background:rgba(17,16,13,.76);backdrop-filter:blur(5px)}
+body.light canvas#constellation{opacity:.2;mix-blend-mode:multiply}
+body.light .project,body.light .credential-card{background:rgba(233,227,217,.78)}
+h1,h2{position:relative}
+.vectorized-title{color:transparent!important;-webkit-text-fill-color:transparent!important}
+.vectorized-title span{-webkit-text-stroke-color:transparent!important}
+.vector-wordmark{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2}
+@media(max-width:700px){h1{font-size:clamp(1.3rem,6.7vw,2.5rem);letter-spacing:-.075em}}
+</style>
 </head>
 <body>
 <canvas id="constellation" aria-hidden="true"></canvas>
 <div class="shell">
-<header class="reveal"><a class="mark" href="#top" aria-label="Back to top"><span class="mark-dot"></span><span>YR / 001</span></a><nav aria-label="Main navigation"><a href="#work">work</a><a href="#about">about</a><a href="#contact">contact</a></nav><button class="theme-button" id="themeToggle" type="button">invert +</button></header>
+<header class="reveal"><a class="mark" href="#top" aria-label="Back to top"><span class="mark-dot"></span><span>YR / 001</span></a><nav aria-label="Main navigation"><a href="#work">work</a><a href="#about">about</a><a href="#certificates">certificates</a><a href="#contact">contact</a></nav><button class="theme-button" id="themeToggle" type="button">invert +</button></header>
 <main id="top">
 <section class="hero" aria-labelledby="intro-title"><div class="hero-orbit" aria-hidden="true"></div><div class="eyebrow reveal delay">Machine Learning &amp; DevOps</div><h1 class="reveal delay" id="intro-title">Yuvanandhan <span>R.</span></h1><p class="hero-copy reveal delay"><strong>ML + DevOps builder.</strong><br>Turning messy signals into useful systems through machine learning, NLP, automation, and a steady curiosity for what comes next.</p><div class="hero-actions reveal delay"><a class="button primary" href="#work">Explore the work <span>↘</span></a><a class="button" href="mailto:yuvanandhanr@gmail.com">Start a conversation <span>↗</span></a></div><div class="scroll-cue">Scroll to inspect</div></section>
-<section id="work" aria-labelledby="work-title"><div class="section-heading"><h2 id="work-title">Selected<br>signals</h2><span class="section-number">01 / 03</span></div><div class="project-grid">
+<section id="work" aria-labelledby="work-title"><div class="section-heading"><h2 id="work-title">Selected<br>signals</h2><span class="section-number">01 / 04</span></div><div class="project-grid">
 <article class="project reveal"><div class="project-top"><span>01 / applied AI</span><span class="tag">Python</span></div><div><h3>Mental health using voice dataset</h3><p>Deep learning and NLP exploration built around voice data and mental-health signals.</p></div><div class="project-bottom"><span>research / prototype</span><a class="project-link" href="https://github.com/yuvanandhanr/Mental-Health-using-voice-dataset" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
 <article class="project reveal delay"><div class="project-top"><span>02 / predictive systems</span><span class="tag">ML + HTML</span></div><div><h3>Machine error prediction</h3><p>Predictive maintenance work combining machine learning with DevOps practices for continuous delivery and integration.</p></div><div class="project-bottom"><span>prediction / delivery</span><a class="project-link" href="https://github.com/yuvanandhanr/machine-error-prediction" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
 <article class="project reveal"><div class="project-top"><span>03 / automation</span><span class="tag">Python</span></div><div><h3>Job bot</h3><p>A Python automation project focused on simplifying repetitive job-search tasks and workflows.</p></div><div class="project-bottom"><span>automation / utility</span><a class="project-link" href="https://github.com/yuvanandhanr/Job-bot" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
 <article class="project reveal delay"><div class="project-top"><span>04 / portfolio</span><span class="tag">Python</span></div><div><h3>Know about Yuvanandhan</h3><p>An earlier portfolio website exploring a personal web presence and project storytelling.</p></div><div class="project-bottom"><span>web / personal brand</span><a class="project-link" href="https://github.com/yuvanandhanr/knowabtyuvanandhanr" target="_blank" rel="noreferrer">View repository ↗</a></div></article>
 </div></section>
-<section id="about" aria-labelledby="about-title"><div class="section-heading"><h2 id="about-title">The<br>approach</h2><span class="section-number">02 / 03</span></div><div class="about-grid"><p class="about-lead">I like work that sits between <em>intelligence</em> and infrastructure: find the pattern, build the model, then make it reliable enough to matter.</p><div class="skill-list"><div class="skill"><span>Machine learning</span><b>01</b></div><div class="skill"><span>Python + NLP</span><b>02</b></div><div class="skill"><span>DevOps + CI/CD</span><b>03</b></div><div class="skill"><span>Data exploration</span><b>04</b></div><div class="skill"><span>Creative web</span><b>05</b></div></div></div></section>
-<section id="contact" aria-labelledby="contact-title"><div class="section-heading"><h2 id="contact-title">Send a<br>signal</h2><span class="section-number">03 / 03</span></div><div class="contact"><div><p class="eyebrow">Open to interesting problems</p><a class="button primary" href="mailto:yuvanandhanr@gmail.com">yuvanandhanr@gmail.com <span>↗</span></a></div><div class="contact-info"><a href="https://github.com/yuvanandhanr" target="_blank" rel="noreferrer">GitHub / yuvanandhanr</a><br><a href="https://www.linkedin.com/in/yuvanandhan" target="_blank" rel="noreferrer">LinkedIn / yuvanandhan</a></div></div></section>
+<section id="about" aria-labelledby="about-title"><div class="section-heading"><h2 id="about-title">The<br>approach</h2><span class="section-number">02 / 04</span></div><div class="about-grid"><p class="about-lead">I like work that sits between <em>intelligence</em> and infrastructure: find the pattern, build the model, then make it reliable enough to matter.</p><div class="skill-list"><div class="skill"><span>Machine learning</span><b>01</b></div><div class="skill"><span>Python + NLP</span><b>02</b></div><div class="skill"><span>DevOps + CI/CD</span><b>03</b></div><div class="skill"><span>Data exploration</span><b>04</b></div><div class="skill"><span>Creative web</span><b>05</b></div></div></div></section>
+<section id="certificates" aria-labelledby="certificates-title"><div class="section-heading"><h2 id="certificates-title">Earned<br>signals</h2><span class="section-number">03 / 04</span></div><div class="credential-viewport" id="credentialViewport" role="region" aria-label="Credly certificates. Use the arrow keys, scroll, or drag to browse." tabindex="0"><div class="credential-track" id="credentialTrack">
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="ClickHouse Observability Professional, issued by ClickHouse, September 23 2026"><div class="credential-art"><img src="https://images.credly.com/images/7eff57db-b425-4d6a-ae2b-78422a974911/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">ClickHouse</span><span class="credential-name">Observability Professional</span><span class="credential-date">Issued Sep 23, 2026</span></div></a>
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="ClickHouse Data Warehousing Professional, issued by ClickHouse, September 22 2026"><div class="credential-art"><img src="https://images.credly.com/images/dc711893-a928-4d7f-b8e8-f27ee8d295fa/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">ClickHouse</span><span class="credential-name">Data Warehousing Professional</span><span class="credential-date">Issued Sep 22, 2026</span></div></a>
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="ClickHouse Database Professional, issued by ClickHouse, September 10 2026"><div class="credential-art"><img src="https://images.credly.com/images/6bfc1fa6-a4ad-4f62-8d42-df8518a99d69/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">ClickHouse</span><span class="credential-name">Database Professional</span><span class="credential-date">Issued Sep 10, 2026</span></div></a>
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="ClickHouse Data Warehousing Associate, issued by ClickHouse, September 10 2026"><div class="credential-art"><img src="https://images.credly.com/images/21506bf4-57db-41b9-9703-24dc2c5e92c7/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">ClickHouse</span><span class="credential-name">Data Warehousing Associate</span><span class="credential-date">Issued Sep 10, 2026</span></div></a>
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="ClickHouse Observability Associate, issued by ClickHouse, September 10 2026"><div class="credential-art"><img src="https://images.credly.com/images/66cd45c0-ce44-4cf6-a308-dc30178180a4/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">ClickHouse</span><span class="credential-name">Observability Associate</span><span class="credential-date">Issued Sep 10, 2026</span></div></a>
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="Concert Sales Foundation, issued by IBM, expires September 2 2027"><div class="credential-art"><img src="https://images.credly.com/images/11655557-6896-4bd1-a87e-9544463fa319/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">IBM</span><span class="credential-name">Concert Sales Foundation</span><span class="credential-date">Expires Sep 2, 2027</span></div></a>
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="Instana Sales Foundation, issued by IBM, expires September 2 2027"><div class="credential-art"><img src="https://images.credly.com/images/289f631b-8cce-4115-8da1-75780c54fab7/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">IBM</span><span class="credential-name">Instana Sales Foundation</span><span class="credential-date">Expires Sep 2, 2027</span></div></a>
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="Instana Intermediate, issued by IBM, expires September 1 2027"><div class="credential-art"><img src="https://images.credly.com/images/faf29d25-5f48-47d9-af7f-6c6427312821/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">IBM</span><span class="credential-name">Instana Intermediate</span><span class="credential-date">Expires Sep 1, 2027</span></div></a>
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="PostgreSQL and ClickHouse, Better Together, issued by ClickHouse, August 25 2026"><div class="credential-art"><img src="https://images.credly.com/images/6995ede3-b028-4a80-979e-f53f397dc1d9/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">ClickHouse</span><span class="credential-name">PostgreSQL and ClickHouse, Better Together</span><span class="credential-date">Issued Aug 25, 2026</span></div></a>
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="ClickHouse Database Associate, issued by ClickHouse, July 28 2026"><div class="credential-art"><img src="https://images.credly.com/images/e767ad06-9b50-49f5-99b1-6d8c49bc554b/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">ClickHouse</span><span class="credential-name">Database Associate</span><span class="credential-date">Issued Jul 28, 2026</span></div></a>
+<a class="credential-card" href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer" aria-label="ClickHouse Partner Sales Professional, issued by ClickHouse, July 27 2026"><div class="credential-art"><img src="https://images.credly.com/images/c1793410-baec-414e-925e-53c26a32d9d9/blob" alt=""></div><div class="credential-meta"><span class="credential-issuer">ClickHouse</span><span class="credential-name">Partner Sales Professional</span><span class="credential-date">Issued Jul 27, 2026</span></div></a>
+</div></div><div class="credential-controls"><p>Drag / scroll to explore · <a href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noreferrer">Open Credly wallet ↗</a></p><div class="credential-buttons"><button class="credential-button" id="credentialPrev" type="button" aria-label="Previous certificate">←</button><button class="credential-button" id="credentialNext" type="button" aria-label="Next certificate">→</button></div></div></section>
+<section id="contact" aria-labelledby="contact-title"><div class="section-heading"><h2 id="contact-title">Send a<br>signal</h2><span class="section-number">04 / 04</span></div><div class="contact"><div><p class="eyebrow">Open to interesting problems</p><a class="button primary" href="mailto:yuvanandhanr@gmail.com">yuvanandhanr@gmail.com <span>↗</span></a></div><div class="contact-info"><a href="https://github.com/yuvanandhanr" target="_blank" rel="noreferrer">GitHub / yuvanandhanr</a><br><a href="https://www.linkedin.com/in/yuvanandhan" target="_blank" rel="noreferrer">LinkedIn / yuvanandhan</a></div></div></section>
 </main><footer><span>© 2026 / Yuvanandhan R</span><span>13° 04' N / 80° 17' E</span></footer>
 </div>
 <script>
 const root=document.documentElement;const body=document.body;const title=document.querySelector('#intro-title');const themeToggle=document.querySelector('#themeToggle');
 addEventListener('pointermove',event=>{root.style.setProperty('--mx',`${event.clientX}px`);root.style.setProperty('--my',`${event.clientY}px`);title.style.setProperty('--shift-x',`${(event.clientX/innerWidth-.5)*7}px`);title.style.setProperty('--shift-y',`${(event.clientY/innerHeight-.5)*7}px`)});
 themeToggle.addEventListener('click',()=>{body.classList.toggle('light');themeToggle.textContent=body.classList.contains('light')?'restore +':'invert +'});
-const canvas=document.querySelector('#constellation');const context=canvas.getContext('2d');let points=[];const resize=()=>{canvas.width=innerWidth;canvas.height=innerHeight;points=Array.from({length:Math.min(70,Math.floor(innerWidth/18))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15}))};const draw=()=>{context.clearRect(0,0,canvas.width,canvas.height);points.forEach((point,index)=>{point.x+=point.vx;point.y+=point.vy;if(point.x<0||point.x>innerWidth)point.vx*=-1;if(point.y<0||point.y>innerHeight)point.vy*=-1;context.fillStyle='rgba(217,245,106,.55)';context.fillRect(point.x,point.y,1.5,1.5);points.slice(index+1).forEach(other=>{const distance=Math.hypot(point.x-other.x,point.y-other.y);if(distance<100){context.strokeStyle=`rgba(217,245,106,${.12*(1-distance/100)})`;context.beginPath();context.moveTo(point.x,point.y);context.lineTo(other.x,other.y);context.stroke()}})});requestAnimationFrame(draw)};resize();addEventListener('resize',resize);draw();
+</script>
+<script>
+const credentialViewport=document.querySelector('#credentialViewport');
+const credentialCards=[...document.querySelectorAll('.credential-card')];
+const credentialPrevious=document.querySelector('#credentialPrev');
+const credentialNext=document.querySelector('#credentialNext');
+let credentialPosition=0;
+let credentialTarget=0;
+let credentialPointer=null;
+let credentialLastX=0;
+let credentialDragDistance=0;
+let credentialDragged=false;
+const credentialStep=260;
+const moveCredential=amount=>{credentialTarget+=amount};
+const renderCredentials=()=>{
+	const center=credentialViewport.clientWidth/2;
+	credentialCards.forEach((card,index)=>{
+		let offset=index-credentialPosition;
+		offset=((offset+credentialCards.length/2)%credentialCards.length+credentialCards.length)%credentialCards.length-credentialCards.length/2;
+		const distance=offset*credentialStep;
+		const scale=Math.max(.68,1-Math.abs(distance)/Math.max(credentialViewport.clientWidth,1)*.42);
+		const opacity=Math.max(.35,1-Math.abs(distance)/Math.max(credentialViewport.clientWidth*1.35,1));
+		card.style.transform=`translate3d(${center+distance-card.offsetWidth/2}px,-50%,0) scale(${scale})`;
+		card.style.opacity=opacity;
+		card.style.zIndex=String(100-Math.round(Math.abs(offset)*10));
+		card.style.filter=`brightness(${1-Math.min(.35,Math.abs(offset)*.09)})`;
+		card.setAttribute('aria-hidden',Math.abs(offset)>1.1?'true':'false');
+		card.tabIndex=Math.abs(offset)>1.1?-1:0;
+	});
+};
+const credentialFrame=()=>{
+	credentialPosition+=(credentialTarget-credentialPosition)*.12;
+	if(Math.abs(credentialTarget-credentialPosition)<.001)credentialPosition=credentialTarget;
+	renderCredentials();
+	requestAnimationFrame(credentialFrame);
+};
+credentialViewport.addEventListener('wheel',event=>{event.preventDefault();moveCredential((Math.abs(event.deltaX)>Math.abs(event.deltaY)?event.deltaX:event.deltaY)*.004)},{passive:false});
+credentialViewport.addEventListener('pointerdown',event=>{credentialPointer=event.pointerId;credentialLastX=event.clientX;credentialDragDistance=0;credentialDragged=false;credentialViewport.setPointerCapture(event.pointerId)});
+credentialViewport.addEventListener('pointermove',event=>{if(credentialPointer!==event.pointerId)return;const delta=event.clientX-credentialLastX;credentialLastX=event.clientX;credentialDragDistance+=Math.abs(delta);if(credentialDragDistance>6)credentialDragged=true;moveCredential(-delta/credentialStep)});
+const releaseCredentialPointer=event=>{if(credentialPointer!==event.pointerId)return;credentialPointer=null;setTimeout(()=>{credentialDragged=false},0)};
+credentialViewport.addEventListener('pointerup',releaseCredentialPointer);
+credentialViewport.addEventListener('pointercancel',releaseCredentialPointer);
+credentialViewport.addEventListener('click',event=>{if(!credentialDragged)return;event.preventDefault();event.stopPropagation();credentialDragged=false},true);
+credentialViewport.addEventListener('keydown',event=>{if(event.key==='ArrowRight'){event.preventDefault();moveCredential(1)}if(event.key==='ArrowLeft'){event.preventDefault();moveCredential(-1)}});
+credentialPrevious.addEventListener('click',()=>moveCredential(-1));
+credentialNext.addEventListener('click',()=>moveCredential(1));
+addEventListener('resize',renderCredentials);
+renderCredentials();
+requestAnimationFrame(credentialFrame);
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script>
+(()=>{
+	const canvas=document.querySelector('#constellation');
+	if(!window.THREE||!canvas)return;
+	const THREEJS=window.THREE;
+	const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+	let renderer;
+	try{
+		renderer=new THREEJS.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});
+	}catch(error){
+		canvas.hidden=true;
+		console.warn('Tornado background is unavailable:',error);
+		return;
+	}
+	renderer.setClearColor(0x000000,0);
+	renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.4));
+	const scene=new THREEJS.Scene();
+	const camera=new THREEJS.PerspectiveCamera(48,innerWidth/innerHeight,.1,150);
+	camera.position.set(0,0,22);
+	camera.lookAt(0,0,0);
+
+	const strandCount=180;
+	const strandSamples=128;
+	const strandVertexCount=strandCount*(strandSamples-1)*2;
+	const strandPositions=new Float32Array(strandVertexCount*3);
+	const strandColors=new Float32Array(strandVertexCount*3);
+	const strandGeometry=new THREEJS.BufferGeometry();
+	strandGeometry.setAttribute('position',new THREEJS.BufferAttribute(strandPositions,3).setUsage(THREEJS.DynamicDrawUsage));
+	strandGeometry.setAttribute('color',new THREEJS.BufferAttribute(strandColors,3).setUsage(THREEJS.DynamicDrawUsage));
+	const strandMaterial=new THREEJS.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.5,blending:THREEJS.AdditiveBlending,depthWrite:false});
+	scene.add(new THREEJS.LineSegments(strandGeometry,strandMaterial));
+
+	const particleCount=4200;
+	const particles=Array.from({length:particleCount},()=>({
+		along:.04+Math.random()*.92,
+		lane:Math.random()*Math.PI*2,
+		phase:Math.random()*Math.PI*2,
+		pulse:.5+Math.random()*2.8,
+		brightness:.12+Math.random()*.55,
+	}));
+	const particlePositions=new Float32Array(particleCount*3);
+	const particleColors=new Float32Array(particleCount*3);
+	const particleGeometry=new THREEJS.BufferGeometry();
+	particleGeometry.setAttribute('position',new THREEJS.BufferAttribute(particlePositions,3).setUsage(THREEJS.DynamicDrawUsage));
+	particleGeometry.setAttribute('color',new THREEJS.BufferAttribute(particleColors,3).setUsage(THREEJS.DynamicDrawUsage));
+	const particleMaterial=new THREEJS.PointsMaterial({size:.045,vertexColors:true,transparent:true,opacity:.72,blending:THREEJS.AdditiveBlending,depthWrite:false,sizeAttenuation:true});
+	scene.add(new THREEJS.Points(particleGeometry,particleMaterial));
+
+	const comets=Array.from({length:7},(_,index)=>{
+		const trailPositions=new Float32Array(22*3);
+		const geometry=new THREEJS.BufferGeometry();
+		geometry.setAttribute('position',new THREEJS.BufferAttribute(trailPositions,3).setUsage(THREEJS.DynamicDrawUsage));
+		const material=new THREEJS.LineBasicMaterial({color:0xf9731a,transparent:true,opacity:.68,blending:THREEJS.AdditiveBlending,depthWrite:false});
+		const trail=new THREEJS.Line(geometry,material);
+		const head=new THREEJS.Mesh(new THREEJS.SphereGeometry(.075,8,8),new THREEJS.MeshBasicMaterial({color:0xff9a45,blending:THREEJS.AdditiveBlending,transparent:true}));
+		scene.add(trail,head);
+		return{trail,head,positions:trailPositions,along:index/7,lane:Math.random()*Math.PI*2,speed:.035+Math.random()*.018};
+	});
+
+	const clampValue=(value,min,max)=>Math.min(max,Math.max(min,value));
+	const pointOnVortex=(along,lane,flow,time,out,offset)=>{
+		const s=clampValue(along,.005,.995);
+		const waist=.5;
+		const radius=s<waist
+			? .88+(19.16-.88)*Math.pow((waist-s)/waist,2.1)
+			: .88+(6.33-.88)*Math.pow((s-waist)/(1-waist),1.35);
+		const angle=lane+flow+s*Math.PI*6+Math.sin(s*25+lane+time*.3)*.008;
+		const r=radius*(1+Math.sin(s*25+lane+time*.3)*.008);
+		out[offset]=Math.cos(angle)*r;
+		out[offset+1]=(s-.5)*10;
+		out[offset+2]=Math.sin(angle)*r;
+	};
+
+	let width=innerWidth;
+	let height=innerHeight;
+	const resize=()=>{
+		width=innerWidth;height=innerHeight;
+		renderer.setSize(width,height,false);
+		camera.aspect=width/Math.max(1,height);
+		camera.updateProjectionMatrix();
+	};
+	addEventListener('resize',resize,{passive:true});
+	resize();
+
+	let elapsed=0;
+	let lastTime=performance.now();
+	let animationFrame=0;
+	const draw=(now,animate)=>{
+		const delta=Math.min((now-lastTime)/1000,.04);
+		lastTime=now;
+		if(animate)elapsed+=delta;
+		const flow=elapsed*.1;
+		let vertex=0;
+		for(let strand=0;strand<strandCount;strand++){
+			const lane=(strand/strandCount)*Math.PI*2;
+			const phase=lane+flow;
+			for(let sample=0;sample<strandSamples-1;sample++){
+				const start=sample/(strandSamples-1);
+				const end=(sample+1)/(strandSamples-1);
+				pointOnVortex(start,lane,flow*1.02,elapsed,strandPositions,vertex);
+				pointOnVortex(end,lane,flow*1.02,elapsed,strandPositions,vertex+3);
+				const edge=Math.min(start,end,1-start,1-end);
+				const fade=clampValue(edge/.08,0,1)*(.32+.18*(.5+.5*Math.sin(phase+start*15)));
+				strandColors[vertex]=fade;
+				strandColors[vertex+1]=fade*.3;
+				strandColors[vertex+2]=fade*.07;
+				strandColors[vertex+3]=fade;
+				strandColors[vertex+4]=fade*.3;
+				strandColors[vertex+5]=fade*.07;
+				vertex+=6;
+			}
+		}
+		strandGeometry.attributes.position.needsUpdate=true;
+		strandGeometry.attributes.color.needsUpdate=true;
+
+		for(let index=0;index<particleCount;index++){
+			const particle=particles[index];
+			const offset=index*3;
+			pointOnVortex(particle.along,particle.lane,flow,elapsed,particlePositions,offset);
+			const shimmer=particle.brightness*(.42+.58*Math.max(0,Math.sin(elapsed*particle.pulse+particle.phase)));
+			particleColors[offset]=shimmer;
+			particleColors[offset+1]=shimmer*.34;
+			particleColors[offset+2]=shimmer*.08;
+		}
+		particleGeometry.attributes.position.needsUpdate=true;
+		particleGeometry.attributes.color.needsUpdate=true;
+
+		for(const comet of comets){
+			if(animate)comet.along=(comet.along+delta*comet.speed)%1;
+			for(let index=0;index<22;index++){
+				const s=comet.along-index*.004;
+				pointOnVortex(s,comet.lane,flow,elapsed,comet.positions,index*3);
+			}
+			comet.trail.geometry.attributes.position.needsUpdate=true;
+			comet.head.position.set(comet.positions[0],comet.positions[1],comet.positions[2]);
+		}
+		renderer.render(scene,camera);
+	};
+	const frame=now=>{
+		draw(now,true);
+		animationFrame=requestAnimationFrame(frame);
+	};
+	const syncMotion=()=>{
+		cancelAnimationFrame(animationFrame);
+		lastTime=performance.now();
+		if(reduced.matches)draw(lastTime,false);
+		else animationFrame=requestAnimationFrame(frame);
+	};
+	reduced.addEventListener('change',syncMotion);
+	syncMotion();
+})();
+</script>
+<script>
+(()=>{
+	const motion=matchMedia('(prefers-reduced-motion: reduce)');
+	const titles=[...document.querySelectorAll('h1,h2')];
+	const active=new Set();
+	const wordmarks=titles.map(title=>{
+		const canvas=document.createElement('canvas');
+		canvas.className='vector-wordmark';
+		canvas.setAttribute('aria-hidden','true');
+		title.append(canvas);
+		title.classList.add('vectorized-title');
+		const context=canvas.getContext('2d');
+		const resize=()=>{
+			const bounds=title.getBoundingClientRect();
+			const ratio=Math.min(devicePixelRatio||1,1.5);
+			canvas.width=Math.max(1,Math.round(bounds.width*ratio));
+			canvas.height=Math.max(1,Math.round(bounds.height*ratio));
+			context.setTransform(ratio,0,0,ratio,0,0);
+		};
+		const observer=new ResizeObserver(resize);
+		observer.observe(title);
+		resize();
+		return{title,canvas,context,resize};
+	});
+	let pointer={x:innerWidth*.5,y:innerHeight*.5,active:false};
+	let sweep=0;
+	let last=performance.now();
+	let frameId=0;
+	addEventListener('pointermove',event=>{pointer={x:event.clientX,y:event.clientY,active:true}},{passive:true});
+	addEventListener('resize',()=>wordmarks.forEach(wordmark=>wordmark.resize()),{passive:true});
+	const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+		const wordmark=wordmarks.find(item=>item.title===entry.target);
+		if(wordmark){if(entry.isIntersecting)active.add(wordmark);else active.delete(wordmark)}
+	}),{rootMargin:'120px'});
+	wordmarks.forEach(wordmark=>observer.observe(wordmark.title));
+	const draw=now=>{
+		const delta=Math.min((now-last)/1000,.05);
+		last=now;
+		if(!motion.matches&&!pointer.active)sweep=(sweep+delta*.28)%1.8-.4;
+		for(const wordmark of active){
+			const{title,canvas,context}=wordmark;
+			const rect=canvas.getBoundingClientRect();
+			const style=getComputedStyle(title);
+			const ratio=canvas.width/Math.max(rect.width,1);
+			const fontSize=parseFloat(style.fontSize);
+			context.clearRect(0,0,rect.width,rect.height);
+			context.font=style.font;
+			context.textAlign='left';
+			context.textBaseline='alphabetic';
+			if('letterSpacing'in context)context.letterSpacing=style.letterSpacing;
+			const lines=title.innerText.trim().split(/\n+/).map(line=>line.trim()).filter(Boolean);
+			const lineHeight=fontSize*parseFloat(style.lineHeight||'1');
+			const baseColor=getComputedStyle(document.body).color;
+			const x=pointer.active?pointer.x-rect.left:((sweep%1.8+1.8)%1.8-0.4)*rect.width;
+			const y=pointer.active?pointer.y-rect.top:rect.height*.52;
+			const radius=Math.max(42,Math.min(rect.width,rect.height)*.32);
+			context.save();
+			context.filter='blur(1.1px)';
+			context.fillStyle=baseColor;
+			lines.forEach((line,index)=>context.fillText(line,0,fontSize*.78+index*lineHeight));
+			context.restore();
+			context.save();
+			context.beginPath();
+			context.arc(x,y,radius,0,Math.PI*2);
+			context.clip();
+			context.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--acid').trim()||'#d9f56a';
+			context.shadowColor=context.fillStyle;
+			context.shadowBlur=Math.max(8,fontSize*.12);
+			lines.forEach((line,index)=>context.fillText(line,0,fontSize*.78+index*lineHeight));
+			context.restore();
+			const handles=[
+				{x:x-rect.width*.055,y:y-rect.height*.14},
+				{x:x+rect.width*.055,y:y-rect.height*.14},
+				{x:x,y:y+rect.height*.14},
+			];
+			context.save();
+			context.strokeStyle='rgba(255,122,69,.72)';
+			context.fillStyle='rgba(255,122,69,.9)';
+			context.lineWidth=1/ratio;
+			context.setLineDash([4/ratio,4/ratio]);
+			context.beginPath();
+			context.moveTo(handles[0].x,handles[0].y);
+			context.lineTo(handles[1].x,handles[1].y);
+			context.lineTo(handles[2].x,handles[2].y);
+			context.closePath();
+			context.stroke();
+			context.setLineDash([]);
+			context.font=`500 ${Math.max(8,fontSize*.085)}px 'DM Mono',monospace`;
+			handles.forEach((handle,index)=>{
+				const half=Math.max(5,fontSize*.07);
+				context.strokeRect(handle.x-half,handle.y-half,half*2,half*2);
+				context.fillText(`${Math.round(handle.x/rect.width*100)},${Math.round(handle.y/rect.height*100)}`,handle.x+half+3,handle.y-half);
+			});
+			context.restore();
+		}
+		frameId=requestAnimationFrame(draw);
+	};
+	const syncMotion=()=>{
+		cancelAnimationFrame(frameId);
+		last=performance.now();
+		frameId=requestAnimationFrame(draw);
+	};
+	motion.addEventListener('change',syncMotion);
+	syncMotion();
+})();
 </script>
 </body>
 </html>
