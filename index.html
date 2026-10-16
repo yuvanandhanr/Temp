@@ -9,18 +9,28 @@
   <script>document.documentElement.classList.add('js');</script>
   <script>
     const SITE_DATA = {
-      about: "I'm Yuvanandhan R, an entry-level DevOps Engineer focused on CI/CD, automation, and cloud infrastructure. As a DevOps Intern at DATAEKO.AI, I work on deployment workflows and automation with JFrog, Mendix, and IBM watsonx; my independent projects also explore voice-data NLP and predictive machine-error detection. I hold a B.Tech in Artificial Engineering and Data Science from Karunya Institute of Technology and Sciences.",
+      about: "I'm Yuvanandhan R, an entry-level DevOps Engineer focused on CI/CD, automation, and cloud infrastructure. My experience spans DevOps and backend AI development, with projects in voice-based mental health prediction, student grievance automation, and cloud deployment pipelines. I hold a B.Tech in Artificial Intelligence and Data Science from Karunya Institute of Technology and Sciences.",
       skills: {
-        ML: ['Machine learning', 'Deep learning', 'Predictive maintenance'],
-        'Python / NLP': ['Python', 'Natural language processing', 'Voice data', 'Automation'],
-        'DevOps / CI-CD': ['CI/CD', 'Docker', 'Kubernetes', 'Infrastructure as code', 'Ansible', 'JFrog'],
-        Data: ['Data exploration', 'Voice datasets', 'ClickHouse', 'Cloud: AWS / Azure / GCP']
+        'AI & Research': ['Deep learning (CNN / RNN)', 'NLP', 'ML algorithms', 'Data science', 'Python', 'Data visualization'],
+        'DevOps & Cloud': ['AWS (EKS, Lambda)', 'Azure (AKS)', 'Terraform', 'Jenkins', 'Docker', 'Kubernetes', 'JFrog', 'Ansible'],
+        'Backend & Systems': ['Java', 'Data structures & algorithms', 'REST APIs', 'SQL', 'MongoDB', 'RPA', 'Robotics'],
+        'Data & Observability': ['ClickHouse', 'IBM observability', 'MeshIQ', 'Voice datasets']
       },
       projects: [
-        { slug: 'Mental-Health-voice', name: 'Mental health using voice dataset', description: 'Deep learning and NLP exploration using voice data.', stack: ['Python', 'Deep learning', 'NLP'], problem: '[Add the problem this project addresses.]', built: '[Add the model, workflow, and your contribution.]', result: '[Add a measured metric or verified outcome.]', repo: 'https://github.com/yuvanandhanr/Mental-Health-using-voice-dataset' },
+        { slug: 'Mental-Health-voice', name: 'Mental health prediction', description: 'Voice-based mental health prediction using signal processing, deep learning, and NLP.', stack: ['Python', 'Feature extraction', 'Noise reduction', 'CNN / RNN', 'NLP'], problem: 'Noise and variation in voice recordings can obscure useful vocal patterns.', built: 'Applied feature extraction and noise reduction to voice datasets, then trained deep-learning models to analyze vocal patterns.', result: 'Optimized models for F1-score; add the measured score when available.', repo: 'https://github.com/yuvanandhanr/Mental-Health-using-voice-dataset' },
         { slug: 'machine-error-prediction', name: 'Machine error prediction', description: 'Machine learning for predictive maintenance, with continuous integration and delivery.', stack: ['ML', 'Predictive maintenance', 'CI/CD'], problem: '[Describe the maintenance problem.]', built: '[Describe the model and delivery workflow.]', result: '[Add a measured metric or verified outcome.]', repo: 'https://github.com/yuvanandhanr/machine-error-prediction' },
         { slug: 'Job-bot', name: 'Job bot', description: 'Python automation for repetitive job-search tasks.', stack: ['Python', 'Automation'], problem: '[Name the repetitive task.]', built: '[Describe the automation and your contribution.]', result: '[Add time saved or another verified outcome.]', repo: 'https://github.com/yuvanandhanr/Job-bot' },
-        { slug: 'know-about', name: 'Know about Yuvanandhan', description: 'An earlier personal portfolio website.', stack: ['Web', 'Portfolio'], problem: '[Describe what the earlier site needed to do.]', built: '[Add the technologies and your contribution.]', result: '[Add a result or lesson learned.]', repo: 'https://github.com/yuvanandhanr/knowabtyuvanandhanr' }
+        { slug: 'know-about', name: 'Know about Yuvanandhan', description: 'An earlier personal portfolio website.', stack: ['Web', 'Portfolio'], problem: '[Describe what the earlier site needed to do.]', built: '[Add the technologies and your contribution.]', result: '[Add a result or lesson learned.]', repo: 'https://github.com/yuvanandhanr/knowabtyuvanandhanr' },
+        { slug: 'student-grievance-system', name: 'Student grievance system', description: 'AI-assisted categorization and priority routing for student grievances.', stack: ['AI', 'Sentiment analysis', 'Authentication', 'Security'], problem: 'Student grievances need consistent categorization and routing by priority.', built: 'Created an AI algorithm for category, priority, and sentiment routing; protected student data with hashed authentication.', result: 'Automates grievance triage; add measured routing or security results when available.', repo: '' },
+        { slug: 'cloud-devops-automation', name: 'AWS / Azure DevOps automation', description: 'Jenkins and Git pipelines with container orchestration for banking and e-learning applications.', stack: ['Jenkins', 'Git', 'AWS EKS', 'Azure AKS', 'Docker', 'Kubernetes'], problem: 'Manual builds and deployments slowed delivery across application environments.', built: 'Built CI/CD pipelines and orchestrated deployments with Docker and Kubernetes on EKS / AKS.', result: 'Zero-downtime deployment; add measured build-time reduction when available.', repo: '' }
+      ],
+      experience: [
+        { company: 'DATAEKO.AI', role: 'Technical Intern - DevOps', period: 'Apr 2026 - Present', highlights: ['Configured artifact repositories and continuous delivery workflows with JFrog.', 'Supported infrastructure and integration observability with IBM technologies and MeshIQ.', 'Assisted with ClickHouse integration for high-performance data processing.'] },
+        { company: 'Learners Circle', role: 'Backend AI Developer Intern', period: 'May 2023 - Jun 2023', highlights: ['Developed an AI-integrated, game-based learning platform using Python and Flask / Django, with data visualizations for parent dashboards.', 'Optimized MongoDB and SQL queries for high-concurrency learning sessions.'] }
+      ],
+      education: [
+        { program: 'B.Tech in Artificial Intelligence and Data Science', institution: 'Karunya Institute of Technology and Sciences', period: '2021 - 2025' },
+        { program: 'Certified DevOps, AWS, Azure, & GCP Specialist', institution: 'PaperLive Learning', period: '2025' }
       ],
       badges: [
         { slug: 'clickhouse-observability-professional', name: 'ClickHouse Observability Professional', date: 'Issued Sep 23, 2026', image: 'clickhouse-observability-professional.png', url: 'https://www.credly.com/badges/54330279-06ba-4679-b915-0aee905c7e97' },
@@ -219,6 +229,8 @@
           <div class="guide-row"><span class="guide-command">cat about.txt</span><span>who I am</span></div>
           <div class="guide-row"><span class="guide-command">ls projects/</span><span>my projects</span></div>
           <div class="guide-row"><span class="guide-command">cat skills.txt</span><span>what I work with</span></div>
+          <div class="guide-row"><span class="guide-command">cat experience.txt</span><span>where I’ve worked</span></div>
+          <div class="guide-row"><span class="guide-command">cat education.txt</span><span>what I’ve studied</span></div>
           <div class="guide-row"><span class="guide-command">ls badges/</span><span>my certificates</span></div>
           <div class="guide-row"><span class="guide-command">cat contact.txt</span><span>how to reach me</span></div>
         </div>
@@ -226,6 +238,8 @@
           <button class="command-chip" type="button" data-command="cat about.txt">about</button>
           <button class="command-chip" type="button" data-command="projects">projects</button>
           <button class="command-chip" type="button" data-command="cat skills.txt">skills</button>
+          <button class="command-chip" type="button" data-command="cat experience.txt">experience</button>
+          <button class="command-chip" type="button" data-command="cat education.txt">education</button>
           <button class="command-chip" type="button" data-command="badges">badges</button>
           <button class="command-chip" type="button" data-command="cat contact.txt">contact</button>
           <button class="command-chip" type="button" data-command="help">help</button>
@@ -255,8 +269,12 @@
         <li>Machine error prediction — ML, predictive maintenance, CI/CD. <a href="https://github.com/yuvanandhanr/machine-error-prediction">Code</a></li>
         <li>Job bot — Python automation. <a href="https://github.com/yuvanandhanr/Job-bot">Code</a></li>
         <li>Know about Yuvanandhan — earlier portfolio. <a href="https://github.com/yuvanandhanr/knowabtyuvanandhanr">Code</a></li>
+        <li>Student grievance system — AI-assisted categorization, priority routing, and hashed authentication.</li>
+        <li>AWS / Azure DevOps automation — Jenkins and Git pipelines with Kubernetes deployments.</li>
       </ul>
-      <h2>Skills</h2><p>ML: machine learning, deep learning, predictive maintenance. Python / NLP: Python, natural language processing, voice data, automation. DevOps / CI-CD: Docker, Kubernetes, infrastructure as code, Ansible, JFrog, CI/CD. Data and cloud: data exploration, ClickHouse, AWS / Azure / GCP.</p>
+      <h2>Experience</h2><p>DATAEKO.AI, Technical Intern - DevOps: JFrog artifact repositories and CD workflows, IBM / MeshIQ observability, and ClickHouse integration. Learners Circle, Backend AI Developer Intern: Python Flask / Django learning platform, student data visualizations, MongoDB and SQL optimization.</p>
+      <h2>Education</h2><p>B.Tech in Artificial Intelligence and Data Science, Karunya Institute of Technology and Sciences (2021–2025). Certified DevOps, AWS, Azure, &amp; GCP Specialist, PaperLive Learning (2025).</p>
+      <h2>Skills</h2><p>AI / Research: CNN / RNN, NLP, ML algorithms, Python, data visualization. DevOps / Cloud: AWS EKS / Lambda, Azure AKS, Terraform, Jenkins, Docker, Kubernetes. Backend / Systems: Java, DSA, REST APIs, SQL, MongoDB, RPA, robotics. Data / Observability: ClickHouse, IBM, MeshIQ.</p>
       <h2>Badges</h2><div class="badge-grid">
         <a class="badge-card" href="https://www.credly.com/badges/9f3c51cc-7212-4a6d-b8aa-f2f44abdf558"><span class="badge-art"><img src="./badges/vault-practitioner-advanced.png" alt="IBM Vault Practitioner Advanced badge"></span><span class="badge-name">Vault Practitioner Advanced · IBM</span></a>
         <a class="badge-card" href="https://www.credly.com/badges/54330279-06ba-4679-b915-0aee905c7e97"><span class="badge-art"><img src="./badges/clickhouse-observability-professional.png" alt="ClickHouse Observability Professional badge"></span><span class="badge-name">ClickHouse Observability Professional</span></a>
@@ -478,12 +496,12 @@
       const history = [];
       const allBadges = [...SITE_DATA.badges, ...SITE_DATA.additionalBadges];
       const knownPaths = [
-        'about.txt', 'skills.txt', 'contact.txt', 'resume.pdf', 'projects/', 'badges/',
+        'about.txt', 'skills.txt', 'experience.txt', 'education.txt', 'contact.txt', 'resume.pdf', 'projects/', 'badges/',
         ...SITE_DATA.projects.map(project => `projects/${project.slug}`),
         ...allBadges.map(badge => `badges/${badge.slug}`)
       ];
       const completions = [
-        'help', 'ls', 'ls projects/', 'ls badges/', 'ls badges/ --all', 'cat about.txt', 'cat skills.txt', 'cat contact.txt',
+        'help', 'ls', 'ls projects/', 'ls badges/', 'ls badges/ --all', 'cat about.txt', 'cat skills.txt', 'cat experience.txt', 'cat education.txt', 'cat contact.txt',
         'projects', 'badges', 'open github', 'open linkedin', 'open credly', 'open resume', 'mail', 'whoami', 'pwd', 'date', 'history', 'clear', 'theme',
         ...SITE_DATA.projects.map(project => `cat projects/${project.slug}`),
         ...allBadges.map(badge => `cat badges/${badge.slug}`)
@@ -523,7 +541,8 @@
         const commands = [
           ['help', 'list available commands'], ['ls', 'show files and folders'], ['ls projects/', 'list projects'],
           ['ls badges/', 'list featured badges'], ['ls badges/ --all', 'list all badges, including sales credentials'],
-          ['cat about.txt', 'read the short bio'], ['cat skills.txt', 'show skill groups'], ['cat contact.txt', 'show contact links'],
+          ['cat about.txt', 'read the short bio'], ['cat skills.txt', 'show technical skills'], ['cat experience.txt', 'show professional experience'],
+          ['cat education.txt', 'show education and training'], ['cat contact.txt', 'show contact links'],
           ['cat projects/<name>', 'show project details and repository'], ['cat badges/<name>', 'show one badge and verification link'],
           ['projects', 'list projects with repository links'], ['badges', 'show featured badges as an image grid'],
           ['open github|linkedin|credly|resume', 'open a profile or resume'], ['mail', 'open an email link'], ['whoami', 'print the current user'],
@@ -540,7 +559,7 @@
         SITE_DATA.projects.forEach(project => {
           const row = node('div', 'shell-project');
           row.append(node('span', 'shell-project-name', `${project.slug}/`), node('span', 'shell-project-description', project.description));
-          if (withLinks) row.append(makeLink('GitHub ↗', project.repo));
+          if (withLinks && project.repo) row.append(makeLink('GitHub ↗', project.repo));
           list.append(row);
         });
         return list;
@@ -555,13 +574,32 @@
         details.append(node('p', '', `Result: ${project.result}`));
         const stack = node('div', 'stack-tags');
         project.stack.forEach(tag => stack.append(node('span', 'stack-tag', tag)));
-        details.append(stack, makeLink('GitHub repository ↗', project.repo));
+        details.append(stack);
+        if (project.repo) details.append(makeLink('GitHub repository ↗', project.repo));
         return details;
       }
 
       function renderSkills() {
         const output = node('div', 'text-output');
         Object.entries(SITE_DATA.skills).forEach(([group, items]) => output.append(lineOutput(`${group}:`, items.join(' · '))));
+        return output;
+      }
+
+      function renderExperience() {
+        const output = node('div', 'project-detail');
+        SITE_DATA.experience.forEach(role => {
+          output.append(node('p', 'help-command', `${role.role} · ${role.company} (${role.period})`));
+          role.highlights.forEach(highlight => output.append(node('p', '', `- ${highlight}`)));
+        });
+        return output;
+      }
+
+      function renderEducation() {
+        const output = node('div', 'project-detail');
+        SITE_DATA.education.forEach(item => {
+          output.append(node('p', 'help-command', item.program));
+          output.append(node('p', '', `${item.institution} · ${item.period}`));
+        });
         return output;
       }
 
@@ -620,7 +658,7 @@
 
       function execute(command, previousCommands) {
         if (command === 'help') return renderHelp();
-        if (command === 'ls') return textOutput('about.txt  skills.txt  contact.txt  resume.pdf\nprojects/  badges/');
+        if (command === 'ls') return textOutput('about.txt  skills.txt  experience.txt  education.txt  contact.txt  resume.pdf\nprojects/  badges/');
         if (command === 'ls projects/') return textOutput(SITE_DATA.projects.map(project => `${project.slug}/`).join('\n'));
         if (command === 'projects') return renderProjects(true);
         if (command === 'ls badges/') return renderBadgeList(SITE_DATA.badges);
@@ -628,6 +666,8 @@
         if (command === 'badges') return renderBadges();
         if (command === 'cat about.txt') return textOutput(SITE_DATA.about);
         if (command === 'cat skills.txt') return renderSkills();
+        if (command === 'cat experience.txt') return renderExperience();
+        if (command === 'cat education.txt') return renderEducation();
         if (command === 'cat contact.txt') return renderContact();
         if (command === 'whoami') return textOutput('yuvanandhan, ML + DevOps builder');
         if (command === 'pwd') return textOutput('/home/yuvanandhan');
