@@ -6,6 +6,9 @@
   <meta name="theme-color" content="#000000">
   <meta name="description" content="Yuvanandhan R — machine learning and DevOps portfolio.">
   <title>Yuvanandhan R — ML + DevOps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.classList.add('js');</script>
   <script>
     const SITE_DATA = {
@@ -114,6 +117,8 @@
     .window-dot.green { background: #28c840; }
     .window-title { grid-column: 2; white-space: nowrap; }
     .title-spacer { grid-column: 3; }
+    .view-toggle { grid-column: 3; justify-self: end; min-height: 1.9rem; padding: .2rem .6rem; border: 1px solid #555; border-radius: 5px; background: #3a3a3a; color: #f3f3f3; cursor: pointer; font: 12px/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .view-toggle:hover { background: #4a4a4a; }
     .terminal-content { min-height: 0; flex: 1 1 auto; display: flex; flex-direction: column; gap: .6rem; overflow: hidden; padding: 1rem clamp(.9rem, 3vw, 1.4rem) .6rem; }
     .terminal-content h1 { margin: 0; }
     .welcome { flex: 0 0 auto; }
@@ -168,6 +173,95 @@
     .noscript-fallback li { margin: .35rem 0; }
     .noscript-fallback .badge-grid { max-width: 100%; }
     .noscript-fallback .badge-card { color: var(--text); }
+    .simple-site { --simple-bg: #09090b; --simple-panel: #18181b; --simple-line: #27272a; --simple-text: #fafafa; --simple-muted: #a1a1aa; min-height: 100vh; background: var(--simple-bg); color: var(--simple-text); font: 16px/1.65 Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .simple-header { position: fixed; inset: 0 0 auto; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.35rem clamp(1.25rem, 5vw, 4.5rem); background: linear-gradient(#09090bf2, #09090bba 65%, transparent); }
+    .simple-brand { color: var(--simple-text); font-size: 1.15rem; font-weight: 700; letter-spacing: -.04em; text-decoration: none; white-space: nowrap; }
+    .simple-nav { display: flex; align-items: center; justify-content: center; gap: clamp(.8rem, 2.3vw, 2rem); }
+    .simple-nav a { color: #a1a1aa; font-size: .86rem; text-decoration: none; transition: color .2s ease; }
+    .simple-nav a:hover { color: var(--simple-text); }
+    .simple-toggle { min-height: 2.4rem; padding: .4rem .8rem; border: 1px solid #3f3f46; border-radius: 6px; background: #18181b; color: #e4e4e7; cursor: pointer; font: 500 .82rem/1.3 Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; white-space: nowrap; transition: border-color .2s ease, background .2s ease; }
+    .simple-toggle:hover { border-color: #71717a; background: #27272a; }
+    .simple-content { width: min(1280px, calc(100% - 3rem)); margin: 0 auto; padding-top: 6rem; }
+    .simple-hero { display: grid; min-height: min(740px, 88vh); align-content: center; padding: 5rem 0 7rem; }
+    .simple-eyebrow { margin: 0 0 1rem; color: #a1a1aa; font-size: .76rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+    .simple-hero h1 { max-width: 1000px; margin: 0; color: var(--simple-text); font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 700; line-height: .98; letter-spacing: -.075em; }
+    .simple-hero h1 span { color: #71717a; }
+    .simple-lead { max-width: 650px; margin: 1.6rem 0 0; color: #a1a1aa; font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.75; }
+    .simple-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+    .simple-button { display: inline-flex; min-height: 3rem; align-items: center; justify-content: center; gap: .6rem; padding: .65rem 1.25rem; border: 1px solid var(--simple-text); border-radius: 999px; background: var(--simple-text); color: #09090b; font-weight: 600; text-decoration: none; transition: background .2s ease, color .2s ease, border-color .2s ease, transform .25s cubic-bezier(.175,.885,.32,1.275); }
+    .simple-button:hover { border-color: #d4d4d8; background: #d4d4d8; color: #09090b; }
+    .simple-button.secondary { border-color: #3f3f46; background: transparent; color: var(--simple-text); }
+    .simple-button.secondary:hover { border-color: #a1a1aa; background: #18181b; color: var(--simple-text); }
+    .simple-section { padding: 5rem 0; border-top: 1px solid var(--simple-line); scroll-margin-top: 6rem; }
+    .simple-section h2 { margin: 0; color: var(--simple-text); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 650; letter-spacing: -.06em; }
+    .simple-section-intro { max-width: 720px; margin: .65rem 0 2rem; color: var(--simple-muted); }
+    .simple-skills-tabs { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1.5rem 0; }
+    .simple-skills-tabs button { min-height: 2.5rem; padding: .45rem .85rem; border: 1px solid #3f3f46; border-radius: 999px; background: transparent; color: #a1a1aa; cursor: pointer; font: inherit; font-size: .88rem; transition: color .2s ease, border-color .2s ease, background .2s ease; }
+    .simple-skills-tabs button:hover, .simple-skills-tabs button[aria-selected="true"] { border-color: #a1a1aa; background: #18181b; color: var(--simple-text); }
+    .simple-skill-list { display: flex; flex-wrap: wrap; gap: .65rem; }
+    .simple-skill { padding: .45rem .75rem; border: 1px solid #27272a; border-radius: 6px; background: #111113; color: #d4d4d8; font-size: .9rem; }
+    .simple-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .simple-card { min-width: 0; padding: 1.35rem; border: 1px solid var(--simple-line); border-radius: 8px; background: #111113; color: var(--simple-text); }
+    .simple-card h3 { margin: 0; color: var(--simple-text); font-size: 1.15rem; line-height: 1.4; }
+    .simple-card p { margin: .6rem 0; color: #a1a1aa; }
+    .simple-card .simple-meta { color: #71717a; font-size: .9rem; }
+    .simple-card details { margin-top: .85rem; color: #a1a1aa; }
+    .simple-card summary, .simple-more-badges summary { color: #e4e4e7; cursor: pointer; font-weight: 550; }
+    .simple-card strong { color: #e4e4e7; }
+    .simple-certificate { color: var(--simple-text); text-decoration: none; transition: border-color .2s ease, background .2s ease; }
+    .simple-certificate:hover { border-color: #71717a; background: #18181b; }
+    .simple-certificate img { display: block; width: 96px; height: 96px; margin-bottom: .8rem; border-radius: 4px; background: #f4f4f5; object-fit: contain; }
+    .simple-more-badges { margin-top: 1.5rem; color: #a1a1aa; }
+    .simple-more-badges summary { margin-bottom: 1rem; }
+    .simple-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin: .9rem 0; }
+    .simple-tags span { padding: .18rem .55rem; border: 1px solid #3f3f46; border-radius: 999px; color: #d4d4d8; font-size: .76rem; }
+    .simple-card a { display: inline-block; margin-top: .6rem; color: #e4e4e7; font-weight: 550; text-underline-offset: .25em; }
+    .simple-card a:hover { color: #fff; }
+    .simple-contact-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: clamp(1.4rem, 4vw, 2.5rem); border: 1px solid #3f3f46; border-radius: 8px; background: #111113; color: var(--simple-text); }
+    .simple-contact-card h3 { margin: 0; color: var(--simple-text); font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: -.04em; }
+    .simple-contact-card p { margin: .35rem 0 0; color: #a1a1aa; }
+    .simple-contact-card .simple-button { margin-top: 0; }
+    .simple-contact-links { margin-top: 1.5rem; }
+    .simple-contact-links a { color: #a1a1aa; font-size: .9rem; text-underline-offset: .25em; }
+    .simple-contact-links a:hover { color: #fff; }
+    .simple-footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.5rem 0 2rem; border-top: 1px solid var(--simple-line); color: #71717a; font-size: .82rem; }
+    .simple-project-list { margin: 2rem 0 0; padding: 0; list-style: none; }
+    .simple-project-item { border-bottom: 1px solid #27272a; }
+    .simple-project-details { padding: 1.35rem 0; }
+    .simple-project-link { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; color: #52525b; cursor: pointer; font-size: clamp(1.7rem, 5.8vw, 4.8rem); font-weight: 650; line-height: 1.15; letter-spacing: -.065em; list-style: none; transition: color .25s ease, padding-left .25s ease; }
+    .simple-project-link::-webkit-details-marker { display: none; }
+    .simple-project-link::after { content: '+'; flex: 0 0 auto; color: #52525b; font-size: .55em; font-weight: 400; letter-spacing: 0; transition: transform .25s ease, color .25s ease; }
+    .simple-project-details[open] > .simple-project-link::after { transform: rotate(45deg); }
+    .simple-project-details[open] > .simple-project-link, .simple-project-link:hover, .simple-project-link:focus-visible { padding-left: .5rem; color: var(--simple-text); }
+    .simple-project-preview { position: fixed; top: 0; left: 0; z-index: 7; width: min(340px, calc(100vw - 2rem)); padding: 1.1rem; border: 1px solid #3f3f46; border-radius: 8px; background: #18181bf2; box-shadow: 0 25px 60px #0008; opacity: 0; pointer-events: none; transform: translate(1rem, 1rem) scale(.96); transition: opacity .18s ease, transform .18s ease; }
+    .simple-project-preview.is-visible { opacity: 1; transform: translate(1rem, 1rem) scale(1); }
+    .simple-project-preview strong { display: block; color: #fafafa; font-size: 1rem; }
+    .simple-project-preview p { margin: .45rem 0 0; color: #a1a1aa; font-size: .85rem; line-height: 1.5; }
+    .simple-project-preview .simple-tags { margin-bottom: 0; }
+    html.simple-mode { height: auto; overflow: auto; scroll-behavior: smooth; }
+    @keyframes simple-view-enter { from { opacity: 0; } to { opacity: 1; } }
+    body.simple-mode { height: auto; min-height: 100vh; min-height: 100dvh; overflow: auto; background: #09090b; color: #fafafa; }
+    body.simple-mode .devops-backdrop, body.simple-mode #portfolio { display: none; }
+    body.simple-mode .simple-site { display: block; animation: simple-view-enter .45s ease both; }
+    @media (max-width: 760px) {
+      .simple-header { flex-wrap: wrap; gap: .65rem 1rem; padding: 1rem 1.25rem; }
+      .simple-nav { order: 3; width: 100%; justify-content: flex-start; overflow-x: auto; padding: .2rem 0 .4rem; scrollbar-width: none; }
+      .simple-nav::-webkit-scrollbar { display: none; }
+      .simple-nav a { white-space: nowrap; }
+      .simple-content { width: min(100% - 2rem, 1280px); padding-top: 7rem; }
+      .simple-hero { min-height: 68vh; padding: 4rem 0 5rem; }
+      .simple-card-grid { grid-template-columns: 1fr; }
+      .simple-project-preview { display: none; }
+    }
+    @media (max-width: 420px) {
+      .simple-content { width: min(100% - 1.5rem, 1280px); padding-top: 7.5rem; }
+      .simple-section { padding: 3.5rem 0; }
+      .simple-toggle { min-height: 2.2rem; padding-inline: .6rem; font-size: .76rem; }
+      .simple-footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .simple-site *, .simple-site *::before, .simple-site *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
     @media (max-width: 700px) {
       .terminal-content { padding-inline: .8rem; }
       .badge-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -216,7 +310,7 @@
     <header class="title-bar">
       <span class="window-dots" aria-hidden="true"><span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span></span>
       <span class="window-title">yuvanandhan — zsh — 100x32</span>
-      <span class="title-spacer" aria-hidden="true"></span>
+      <button class="view-toggle" id="terminal-view-toggle" type="button" aria-pressed="false">Simple view</button>
     </header>
     <main class="terminal-content">
       <h1 class="sr-only" tabindex="-1">Yuvanandhan R — ML + DevOps</h1>
@@ -251,6 +345,54 @@
       </form>
     </main>
     <footer class="contact-footer"><span class="footer-label">Links</span><a href="https://github.com/yuvanandhanr" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://linkedin.com/in/yuvanandhan" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:yuvanandhanr@gmail.com">Email</a></footer>
+  </div>
+
+  <div class="simple-site" id="simple-site" hidden>
+    <header class="simple-header">
+      <a class="simple-brand" href="#simple-home">Yuvanandhan R</a>
+      <nav class="simple-nav" aria-label="Main navigation">
+        <a href="#simple-about">About</a><a href="#simple-skills">Skills</a><a href="#simple-projects">Projects</a><a href="#simple-experience">Experience</a><a href="#simple-education">Education</a><a href="#simple-badges">Certificates</a><a href="#simple-contact">Contact</a>
+      </nav>
+      <button class="simple-toggle" id="simple-view-toggle" type="button" aria-pressed="true">Switch to terminal</button>
+    </header>
+    <main class="simple-content">
+      <section class="simple-hero" id="simple-home">
+        <p class="simple-eyebrow">DevOps · Cloud · AI</p>
+        <h1>Building reliable systems<span>.</span></h1>
+        <p class="simple-lead">I’m Yuvanandhan, an entry-level DevOps Engineer working across cloud infrastructure, delivery automation, and practical AI projects.</p>
+        <div class="simple-actions"><a class="simple-button magnetic-btn" href="#simple-projects">Explore my projects <span aria-hidden="true">→</span></a><a class="simple-button secondary magnetic-btn" href="#simple-contact">Get in touch</a></div>
+      </section>
+      <section class="simple-section" id="simple-about">
+        <h2>About me</h2><p class="simple-section-intro" id="simple-about-copy"></p>
+      </section>
+      <section class="simple-section" id="simple-skills">
+        <h2>Skills</h2><p class="simple-section-intro">Choose an area to see the tools and topics I work with.</p>
+        <div class="simple-skills-tabs" id="simple-skills-tabs" role="tablist" aria-label="Skill categories"></div>
+        <div class="simple-skill-list" id="simple-skill-list" role="tabpanel" aria-live="polite"></div>
+      </section>
+      <section class="simple-section" id="simple-projects">
+        <h2>Projects</h2><p class="simple-section-intro">A selection of machine learning, automation, and cloud delivery work.</p>
+        <ul class="simple-project-list" id="simple-project-list"></ul>
+      </section>
+      <section class="simple-section" id="simple-experience">
+        <h2>Experience</h2><p class="simple-section-intro">Roles and selected contributions.</p>
+        <div class="simple-card-grid" id="simple-experience-list"></div>
+      </section>
+      <section class="simple-section" id="simple-education">
+        <h2>Education</h2><div class="simple-card-grid" id="simple-education-list"></div>
+      </section>
+      <section class="simple-section" id="simple-badges">
+        <h2>Certificates</h2><p class="simple-section-intro">Professional credentials and learning milestones.</p>
+        <div class="simple-card-grid" id="simple-badge-list"></div>
+        <details class="simple-more-badges"><summary>Show more certificates</summary><div class="simple-card-grid" id="simple-additional-badges"></div></details>
+      </section>
+      <section class="simple-section" id="simple-contact">
+        <div class="simple-contact-card"><div><h3>Let’s connect</h3><p>Have a role or project in mind? I’d be happy to hear from you.</p></div><a class="simple-button" href="mailto:yuvanandhanr@gmail.com">Email me</a></div>
+        <div class="simple-actions simple-contact-links"><a href="https://github.com/yuvanandhanr" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://linkedin.com/in/yuvanandhan" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.credly.com/users/yuvanandhan-raja" target="_blank" rel="noopener noreferrer">Credly ↗</a></div>
+      </section>
+      <footer class="simple-footer"><span>© <span id="simple-year"></span> Yuvanandhan R</span><span>DevOps · Cloud · AI</span></footer>
+    </main>
+    <aside class="simple-project-preview" id="simple-project-preview" aria-hidden="true"></aside>
   </div>
 
   <noscript>
@@ -298,6 +440,7 @@
       const skipButton = document.querySelector('#skip-intro');
       const portfolio = document.querySelector('#portfolio');
       portfolio.setAttribute('inert', '');
+      document.querySelector('#simple-site').setAttribute('inert', '');
       const context = canvas.getContext('2d');
       const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
       const codeTokens = ['{', '}', ';', '=', '>', '<', '/', '0', '1', 'def', 'git', 'ml'];
@@ -410,6 +553,7 @@
         intro.remove();
         document.body.classList.remove('intro-active');
         portfolio.removeAttribute('inert');
+        document.querySelector('#simple-site').setAttribute('inert', '');
         if (focusMain) portfolio.querySelector('#command-input').focus({ preventScroll: true });
       }
 
@@ -846,6 +990,197 @@
       document.querySelector('#command-input').addEventListener('blur', () => {
         document.querySelector('.command-entry').removeAttribute('data-focused');
       });
+    })();
+  </script>
+  <script>
+    (() => {
+      const terminal = document.querySelector('#portfolio');
+      const simpleSite = document.querySelector('#simple-site');
+      const toggles = [document.querySelector('#terminal-view-toggle'), document.querySelector('#simple-view-toggle')];
+      const skillsTabs = document.querySelector('#simple-skills-tabs');
+      const skillsList = document.querySelector('#simple-skill-list');
+
+      function element(tag, className, text) {
+        const item = document.createElement(tag);
+        if (className) item.className = className;
+        if (text !== undefined) item.textContent = text;
+        return item;
+      }
+
+      function addLink(parent, label, href) {
+        const link = element('a', '', label);
+        link.href = href;
+        if (!href.startsWith('mailto:')) {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        }
+        parent.append(link);
+        return link;
+      }
+
+      function addProjectDetail(card, label, value) {
+        if (!value || value.startsWith('[')) return;
+        const detail = element('p');
+        const title = element('strong', '', `${label}: `);
+        detail.append(title, document.createTextNode(value));
+        card.append(detail);
+      }
+
+      function renderProjects() {
+        const list = document.querySelector('#simple-project-list');
+        SITE_DATA.projects.forEach(project => {
+          const item = element('li', 'simple-project-item');
+          item.dataset.projectName = project.name;
+          item.dataset.projectDescription = project.description;
+          const details = element('details', 'simple-project-details');
+          const title = element('summary', 'simple-project-link', project.name);
+          title.setAttribute('aria-label', `${project.name}: show details`);
+          details.append(title, element('p', '', project.description));
+          const tags = element('div', 'simple-tags');
+          project.stack.forEach(skill => tags.append(element('span', '', skill)));
+          details.append(tags);
+          const projectDetails = element('div');
+          addProjectDetail(projectDetails, 'Problem', project.problem);
+          addProjectDetail(projectDetails, 'What I built', project.built);
+          addProjectDetail(projectDetails, 'Result', project.result);
+          details.append(projectDetails);
+          if (project.repo) addLink(details, 'View project on GitHub ↗', project.repo);
+          item.append(details);
+          list.append(item);
+        });
+      }
+
+      function renderExperiences() {
+        const list = document.querySelector('#simple-experience-list');
+        SITE_DATA.experience.forEach(role => {
+          const card = element('article', 'simple-card');
+          card.append(element('h3', '', role.role), element('p', 'simple-meta', `${role.company} · ${role.period}`));
+          const highlights = element('ul');
+          role.highlights.forEach(highlight => highlights.append(element('li', '', highlight)));
+          card.append(highlights);
+          list.append(card);
+        });
+      }
+
+      function renderEducation() {
+        const list = document.querySelector('#simple-education-list');
+        SITE_DATA.education.forEach(item => {
+          const card = element('article', 'simple-card');
+          card.append(element('h3', '', item.program), element('p', '', item.institution), element('p', 'simple-meta', item.period));
+          list.append(card);
+        });
+      }
+
+      function renderBadges(badges, container) {
+        badges.forEach(badge => {
+          const card = element('a', 'simple-card simple-certificate');
+          card.href = badge.url;
+          card.target = '_blank';
+          card.rel = 'noopener noreferrer';
+          const image = element('img');
+          image.src = `./badges/${badge.image}`;
+          image.alt = '';
+          image.loading = 'lazy';
+          image.width = 96;
+          image.height = 96;
+          card.append(image, element('h3', '', badge.name), element('p', 'simple-meta', badge.date));
+          container.append(card);
+        });
+      }
+
+      function showSkillGroup(group, selectedTab) {
+        skillsList.replaceChildren();
+        SITE_DATA.skills[group].forEach(skill => skillsList.append(element('span', 'simple-skill', skill)));
+        skillsTabs.querySelectorAll('button').forEach(tab => {
+          const selected = tab === selectedTab;
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+        });
+      }
+
+      Object.keys(SITE_DATA.skills).forEach((group, index) => {
+        const tab = element('button', '', group);
+        tab.type = 'button';
+        tab.setAttribute('role', 'tab');
+        tab.setAttribute('aria-selected', String(index === 0));
+        tab.tabIndex = index === 0 ? 0 : -1;
+        tab.addEventListener('click', () => showSkillGroup(group, tab));
+        tab.addEventListener('keydown', event => {
+          if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          const tabs = [...skillsTabs.querySelectorAll('button')];
+          const current = tabs.indexOf(tab);
+          const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (current + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+          tabs[next].focus();
+          tabs[next].click();
+        });
+        skillsTabs.append(tab);
+        if (index === 0) showSkillGroup(group, tab);
+      });
+
+      document.querySelector('#simple-about-copy').textContent = SITE_DATA.about;
+      document.querySelector('#simple-year').textContent = new Date().getFullYear();
+      renderProjects();
+      renderExperiences();
+      renderEducation();
+      renderBadges(SITE_DATA.badges, document.querySelector('#simple-badge-list'));
+      renderBadges(SITE_DATA.additionalBadges, document.querySelector('#simple-additional-badges'));
+
+      const projectPreview = document.querySelector('#simple-project-preview');
+      if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.querySelectorAll('.simple-project-item').forEach(item => {
+          item.addEventListener('pointerenter', event => {
+            projectPreview.replaceChildren(
+              element('strong', '', item.dataset.projectName),
+              element('p', '', item.dataset.projectDescription)
+            );
+            const project = SITE_DATA.projects.find(candidate => candidate.name === item.dataset.projectName);
+            if (project) {
+              const tags = element('div', 'simple-tags');
+              project.stack.slice(0, 4).forEach(skill => tags.append(element('span', '', skill)));
+              projectPreview.append(tags);
+            }
+            projectPreview.classList.add('is-visible');
+            projectPreview.style.left = `${event.clientX}px`;
+            projectPreview.style.top = `${event.clientY}px`;
+          });
+          item.addEventListener('pointermove', event => {
+            projectPreview.style.left = `${Math.min(event.clientX, innerWidth - projectPreview.offsetWidth - 16)}px`;
+            projectPreview.style.top = `${Math.min(event.clientY, innerHeight - projectPreview.offsetHeight - 16)}px`;
+          });
+          item.addEventListener('pointerleave', () => projectPreview.classList.remove('is-visible'));
+        });
+      }
+
+      document.querySelectorAll('.magnetic-btn').forEach(button => {
+        if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+        button.addEventListener('pointermove', event => {
+          const bounds = button.getBoundingClientRect();
+          const x = event.clientX - bounds.left - bounds.width / 2;
+          const y = event.clientY - bounds.top - bounds.height / 2;
+          button.style.transform = `translate(${x * .12}px, ${y * .12}px)`;
+        });
+        button.addEventListener('pointerleave', () => { button.style.transform = ''; });
+      });
+
+      function setSimpleView(enabled) {
+        document.body.classList.toggle('simple-mode', enabled);
+        simpleSite.hidden = !enabled;
+        terminal.inert = enabled;
+        simpleSite.inert = !enabled;
+        toggles.forEach(toggle => toggle.setAttribute('aria-pressed', String(enabled)));
+        if (enabled) {
+          window.scrollTo(0, 0);
+          document.querySelector('#simple-view-toggle').focus({ preventScroll: true });
+        } else {
+          window.scrollTo(0, 0);
+          document.querySelector('#command-input').focus({ preventScroll: true });
+        }
+      }
+
+      toggles.forEach(toggle => toggle.addEventListener('click', () => {
+        setSimpleView(!document.body.classList.contains('simple-mode'));
+      }));
     })();
   </script>
 </body>
