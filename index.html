@@ -1164,6 +1164,7 @@
       });
 
       function setSimpleView(enabled) {
+        document.documentElement.classList.toggle('simple-mode', enabled);
         document.body.classList.toggle('simple-mode', enabled);
         simpleSite.hidden = !enabled;
         terminal.inert = enabled;
